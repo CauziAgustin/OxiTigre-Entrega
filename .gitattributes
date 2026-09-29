@@ -1,0 +1,13 @@
+* text=auto
+*.cs text eol=crlf
+*.csproj text eol=crlf
+*.sln text eol=crlf
+*.sql text eol=crlf
+*.ps1 text eol=crlf
+*.yml text eol=lf
+*.yaml text eol=lf
+*.md text eol=lf
+*.json text eol=lf
+*.pdf binary
+*.docx binary
+*.resx text eol=crlf

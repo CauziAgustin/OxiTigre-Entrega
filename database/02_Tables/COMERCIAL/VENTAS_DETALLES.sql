@@ -1,0 +1,36 @@
+/*
+===============================================================================
+Proyecto: Sistema Modular de Gestión OxiTigre
+Componente: COMERCIAL.VENTAS_DETALLES
+Archivo: VENTAS_DETALLES.sql | Versión: 1.1.0 | Fecha: 2026-08-21 | ID pedido: FABRICA
+Desarrollador: Agustin Omar Cauzi | Correo: agustincauzi10@hotmail.com
+Descripción funcional: Conserva la valorización inmutable copiada del pedido vendido.
+Historial: 1.0.0 | 2026-08-20 | FABRICA | Agustin Omar Cauzi | Creación inicial.
+Historial: 1.1.0 | 2026-08-21 | FABRICA | Agustin Omar Cauzi | Conserva la promoción histórica copiada del pedido.
+===============================================================================
+*/
+CREATE TABLE [COMERCIAL].[VENTAS_DETALLES]
+(
+    [ID_VENTA_DETALLE] BIGINT IDENTITY(1,1) NOT NULL,
+    [ID_VENTA] BIGINT NOT NULL,
+    [ID_PRODUCTO] BIGINT NOT NULL,
+    [ID_DEPOSITO] BIGINT NULL,
+    [ID_PROMOCION] BIGINT NULL,
+    [CODIGO_PROMOCION] NVARCHAR(30) NULL,
+    [NOMBRE_PROMOCION] NVARCHAR(150) NULL,
+    [CANTIDAD] DECIMAL(19,4) NOT NULL,
+    [PRECIO_UNITARIO] DECIMAL(19,4) NOT NULL,
+    [PORCENTAJE_DESCUENTO] DECIMAL(9,6) NOT NULL,
+    [PORCENTAJE_IMPUESTO] DECIMAL(9,6) NOT NULL,
+    [SUBTOTAL] DECIMAL(19,4) NOT NULL,
+    [IMPORTE_DESCUENTO] DECIMAL(19,4) NOT NULL,
+    [IMPORTE_IMPUESTO] DECIMAL(19,4) NOT NULL,
+    [TOTAL] DECIMAL(19,4) NOT NULL,
+    [CODIGO_ESTADO] NVARCHAR(30) NOT NULL CONSTRAINT [DF_VENTAS_DETALLES_CODIGO_ESTADO] DEFAULT (N'ACTIVO'),
+    [FECHA_ALTA_UTC] DATETIME2(3) NOT NULL CONSTRAINT [DF_VENTAS_DETALLES_FECHA_ALTA_UTC] DEFAULT (SYSUTCDATETIME()),
+    [ID_USUARIO_ALTA] BIGINT NOT NULL,
+    [FECHA_MODIFICACION_UTC] DATETIME2(3) NULL,
+    [ID_USUARIO_MODIFICACION] BIGINT NULL,
+    [ROW_VERSION] ROWVERSION NOT NULL,
+    CONSTRAINT [PK_VENTAS_DETALLES] PRIMARY KEY CLUSTERED ([ID_VENTA_DETALLE])
+);

@@ -1,0 +1,81 @@
+/*
+===============================================================================
+Proyecto: Sistema Modular de Gestión OxiTigre
+Componente: SP_MANTENIMIENTO_COMPLETE
+Archivo: SP_MANTENIMIENTO_COMPLETE.sql | Procedimiento: INVENTARIO.SP_MANTENIMIENTO_COMPLETE | Tipo: COMMAND
+Versión: 1.0.1 | Fecha: 2026-09-20 | ID pedido: FABRICA
+Desarrollador: Agustin Omar Cauzi | Correo: agustincauzi10@hotmail.com
+Descripción funcional: Completa mantenimiento con resultado, componentes, costo y certificado.
+Parámetros de entrada: @I_CERTIFICADO_REFERENCIA, @I_COMPONENTE_ANTERIOR, @I_COMPONENTE_NUEVO, @I_COSTO, @I_FECHA_FIN_UTC, @I_FECHA_PROXIMA_REVISION, @I_ID_EMPRESA, @I_ID_MANTENIMIENTO, @I_RESULTADO, @I_ROW_VERSION, @S_ID_SESION, @S_ID_USUARIO.
+Parámetros de salida: @O_CODIGO_ERROR, @O_FILAS_AFECTADAS, @O_MENSAJE.
+Retorno: Informa el resultado mediante los parámetros de salida declarados.
+Tablas utilizadas: INVENTARIO.ACTIVOS - UPDATE; INVENTARIO.ACTIVOS_EVENTOS - INSERT; INVENTARIO.MANTENIMIENTOS - SELECT/UPDATE.
+Transacción: Abre una transacción explícita para agrupar sus escrituras.
+Auditoría: No registra auditoría explícita dentro del procedimiento.
+Historial: 1.0.0 | 2026-08-24 | FABRICA | Agustin Omar Cauzi | Creación inicial.
+Historial: 1.0.1 | 2026-09-20 | FABRICA | Agustin Omar Cauzi | Documentación técnica completa del procedimiento.
+===============================================================================
+*/
+CREATE OR ALTER PROCEDURE [INVENTARIO].[SP_MANTENIMIENTO_COMPLETE]
+    @I_ID_EMPRESA BIGINT,
+    @I_ID_MANTENIMIENTO BIGINT,
+    @I_FECHA_FIN_UTC DATETIME2 (3),
+    @I_RESULTADO NVARCHAR (1000),
+    @I_COMPONENTE_ANTERIOR NVARCHAR (200)=NULL,
+    @I_COMPONENTE_NUEVO NVARCHAR (200)=NULL,
+    @I_COSTO DECIMAL (19, 4)=NULL,
+    @I_CERTIFICADO_REFERENCIA NVARCHAR (500)=NULL,
+    @I_FECHA_PROXIMA_REVISION DATE=NULL,
+    @I_ROW_VERSION BINARY (8),
+    @S_ID_SESION BIGINT,
+    @S_ID_USUARIO BIGINT,
+    @O_CODIGO_ERROR BIGINT OUTPUT,
+    @O_MENSAJE NVARCHAR (4000) OUTPUT,
+    @O_FILAS_AFECTADAS INT OUTPUT
+AS
+BEGIN
+    SET NOCOUNT ON;
+    SET XACT_ABORT ON;
+    SET @O_CODIGO_ERROR = NULL;
+    SET @O_MENSAJE = NULL;
+    SET @O_FILAS_AFECTADAS = 0;
+    BEGIN TRANSACTION;
+    DECLARE @V_ACTIVO AS BIGINT, @V_INICIO AS DATETIME2 (3);
+    SELECT @V_ACTIVO = [ID_ACTIVO],
+           @V_INICIO = [FECHA_INICIO_UTC]
+    FROM   [INVENTARIO].[MANTENIMIENTOS] WITH (UPDLOCK, HOLDLOCK)
+    WHERE  [ID_MANTENIMIENTO] = @I_ID_MANTENIMIENTO
+           AND [ID_EMPRESA] = @I_ID_EMPRESA
+           AND [CODIGO_ESTADO] = N'EN_CURSO'
+           AND [ROW_VERSION] = @I_ROW_VERSION;
+    IF @V_ACTIVO IS NULL
+       OR @I_FECHA_FIN_UTC < @V_INICIO
+        BEGIN
+            SET @O_CODIGO_ERROR = 30008;
+            SET @O_MENSAJE = N'El mantenimiento cambió, no está abierto o la fecha no es válida.';
+            ROLLBACK;
+            RETURN;
+        END
+    UPDATE [INVENTARIO].[MANTENIMIENTOS]
+    SET    [FECHA_FIN_UTC]           = @I_FECHA_FIN_UTC,
+           [RESULTADO]               = @I_RESULTADO,
+           [COMPONENTE_ANTERIOR]     = @I_COMPONENTE_ANTERIOR,
+           [COMPONENTE_NUEVO]        = @I_COMPONENTE_NUEVO,
+           [COSTO]                   = COALESCE (@I_COSTO, [COSTO]),
+           [CERTIFICADO_REFERENCIA]  = @I_CERTIFICADO_REFERENCIA,
+           [FECHA_PROXIMA_REVISION]  = @I_FECHA_PROXIMA_REVISION,
+           [CODIGO_ESTADO]           = N'COMPLETADO',
+           [FECHA_MODIFICACION_UTC]  = SYSUTCDATETIME(),
+           [ID_USUARIO_MODIFICACION] = @S_ID_USUARIO
+    WHERE  [ID_MANTENIMIENTO] = @I_ID_MANTENIMIENTO;
+    UPDATE [INVENTARIO].[ACTIVOS]
+    SET    [CODIGO_ESTADO]           = N'DISPONIBLE',
+           [CONDICION_ACTUAL]        = N'OPERATIVO',
+           [FECHA_MODIFICACION_UTC]  = SYSUTCDATETIME(),
+           [ID_USUARIO_MODIFICACION] = @S_ID_USUARIO
+    WHERE  [ID_ACTIVO] = @V_ACTIVO;
+    INSERT  [INVENTARIO].[ACTIVOS_EVENTOS] ([ID_EMPRESA], [ID_ACTIVO], [TIPO_EVENTO], [FECHA_EVENTO_UTC], [CODIGO_ESTADO_ANTES], [CODIGO_ESTADO_DESPUES], [CONDICION_ANTES], [CONDICION_DESPUES], [ID_MANTENIMIENTO], [OBSERVACION], [ID_CORRELACION], [CODIGO_ESTADO], [ID_USUARIO_ALTA])
+    VALUES                                (@I_ID_EMPRESA, @V_ACTIVO, N'MANTENIMIENTO_FIN', @I_FECHA_FIN_UTC, N'BLOQUEADO', N'DISPONIBLE', N'EN_MANTENIMIENTO', N'OPERATIVO', @I_ID_MANTENIMIENTO, @I_RESULTADO, NEWID(), N'CONFIRMADO', @S_ID_USUARIO);
+    SET @O_FILAS_AFECTADAS = 3;
+    COMMIT TRANSACTION;
+END

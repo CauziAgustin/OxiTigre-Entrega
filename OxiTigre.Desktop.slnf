@@ -1,0 +1,18 @@
+{
+    "solution": {
+        "path": "OxiTigre.sln",
+        "projects": [
+            "backend/OxiTigre.Api/OxiTigre.Api.csproj",
+            "backend/OxiTigre.BLL/OxiTigre.BLL.csproj",
+            "backend/OxiTigre.DAL/OxiTigre.DAL.csproj",
+            "backend/OxiTigre.Domain/OxiTigre.Domain.csproj",
+            "frontend/OxiTigre.AdminWeb/OxiTigre.AdminWeb.csproj",
+            "frontend/OxiTigre.ApiClient/OxiTigre.ApiClient.csproj",
+            "frontend/OxiTigre.WinForms/OxiTigre.WinForms.csproj",
+            "shared/OxiTigre.Contracts/OxiTigre.Contracts.csproj",
+            "tests/OxiTigre.Api.Tests/OxiTigre.Api.Tests.csproj",
+            "tests/OxiTigre.BLL.Tests/OxiTigre.BLL.Tests.csproj",
+            "tests/OxiTigre.DAL.Tests/OxiTigre.DAL.Tests.csproj"
+        ]
+    }
+}

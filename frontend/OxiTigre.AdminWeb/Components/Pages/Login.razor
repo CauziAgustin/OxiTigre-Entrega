@@ -1,0 +1,39 @@
+@page "/login"
+@attribute [AllowAnonymous]
+
+<PageTitle>Acceso administrativo · OxiTigre</PageTitle>
+
+<main class="login-shell">
+    <section class="login-card">
+        <div class="brand large">OxiTigre</div>
+        <p class="eyebrow">Panel administrativo web</p>
+        <h1>Ingresar</h1>
+        <p class="muted">Solo pueden acceder usuarios con rol ADMINISTRADOR.</p>
+        @if (!string.IsNullOrWhiteSpace(Error))
+        {
+            <div class="alert" role="alert">@ErrorMessage</div>
+        }
+        <form method="post" action="/auth/login" class="login-form">
+            <AntiforgeryToken />
+            <label for="username">Usuario</label>
+            <input id="username" name="username" autocomplete="username" required />
+            <label for="password">Contraseña</label>
+            <input id="password" name="password" type="password" autocomplete="current-password" required />
+            <label for="company">Empresa</label>
+            <input id="company" name="company" value="OXITIGRE" maxlength="30" required />
+            <button type="submit">Ingresar al panel</button>
+        </form>
+    </section>
+</main>
+
+@code {
+    [SupplyParameterFromQuery] public string? Error { get; set; }
+    private string ErrorMessage => Error switch
+    {
+        "required" => "Completá usuario, contraseña y empresa.",
+        "forbidden" => "El usuario no posee el rol ADMINISTRADOR.",
+        "password" => "Primero cambiá la contraseña temporal desde la aplicación de escritorio.",
+        "api" => "La API no está disponible. Verificá que esté iniciada.",
+        _ => "Las credenciales o la empresa no son válidas."
+    };
+}

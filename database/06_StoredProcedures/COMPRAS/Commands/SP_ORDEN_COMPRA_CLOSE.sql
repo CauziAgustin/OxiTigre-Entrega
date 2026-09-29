@@ -1,0 +1,46 @@
+/*
+===============================================================================
+Proyecto: Sistema Modular de Gestión OxiTigre
+Componente: SP_ORDEN_COMPRA_CLOSE
+Archivo: SP_ORDEN_COMPRA_CLOSE.sql | Procedimiento: COMPRAS.SP_ORDEN_COMPRA_CLOSE | Tipo: COMMAND
+Versión: 1.0.1 | Fecha: 2026-09-20 | ID pedido: FABRICA
+Desarrollador: Agustin Omar Cauzi | Correo: agustincauzi10@hotmail.com
+Descripción funcional: Cierra con motivo el saldo que el proveedor no entregará.
+Parámetros de entrada: @I_ID_EMPRESA, @I_ID_ORDEN_COMPRA, @I_MOTIVO_CIERRE, @I_ROW_VERSION, @S_ID_SESION, @S_ID_USUARIO.
+Parámetros de salida: @O_CODIGO_ERROR, @O_FILAS_AFECTADAS, @O_MENSAJE.
+Retorno: Informa el resultado mediante los parámetros de salida declarados.
+Tablas utilizadas: AUDITORIA.BITACORA_CAMBIOS_ESTADO - INSERT; COMPRAS.ORDENES_COMPRA - SELECT/UPDATE; COMPRAS.ORDENES_COMPRA_DETALLES - UPDATE.
+Transacción: Abre una transacción explícita para agrupar sus escrituras.
+Auditoría: Registra información mediante objetos del esquema AUDITORIA referenciados por el procedimiento.
+Historial: 1.0.0 | 2026-08-24 | FABRICA | Agustin Omar Cauzi | Creación inicial.
+Historial: 1.0.1 | 2026-09-20 | FABRICA | Agustin Omar Cauzi | Documentación técnica completa del procedimiento.
+===============================================================================
+*/
+CREATE OR ALTER PROCEDURE [COMPRAS].[SP_ORDEN_COMPRA_CLOSE]
+    @I_ID_EMPRESA BIGINT, @I_ID_ORDEN_COMPRA BIGINT, @I_ROW_VERSION BINARY(8), @I_MOTIVO_CIERRE NVARCHAR(500),
+    @S_ID_SESION BIGINT, @S_ID_USUARIO BIGINT,
+    @O_CODIGO_ERROR BIGINT OUTPUT, @O_MENSAJE NVARCHAR(4000) OUTPUT, @O_FILAS_AFECTADAS INT OUTPUT
+AS
+BEGIN
+    SET NOCOUNT ON; SET XACT_ABORT ON; SET @O_CODIGO_ERROR = NULL; SET @O_MENSAJE = NULL; SET @O_FILAS_AFECTADAS = 0;
+    IF NULLIF(LTRIM(RTRIM(@I_MOTIVO_CIERRE)), N'') IS NULL THROW 50000, 'El motivo de cierre es obligatorio.', 1;
+    BEGIN TRANSACTION;
+    DECLARE @V_ESTADO NVARCHAR(30);
+    SELECT @V_ESTADO = [CODIGO_ESTADO] FROM [COMPRAS].[ORDENES_COMPRA] WITH (UPDLOCK, HOLDLOCK)
+    WHERE [ID_ORDEN_COMPRA] = @I_ID_ORDEN_COMPRA AND [ID_EMPRESA] = @I_ID_EMPRESA AND [ROW_VERSION] = @I_ROW_VERSION;
+    IF @V_ESTADO NOT IN (N'APROBADA', N'RECIBIDA_PARCIAL')
+    BEGIN SET @O_CODIGO_ERROR = 50003; SET @O_MENSAJE = N'Solo una orden aprobada o parcialmente recibida puede cerrar su saldo.'; ROLLBACK; RETURN; END;
+    UPDATE [COMPRAS].[ORDENES_COMPRA_DETALLES]
+    SET [CANTIDAD_CERRADA] = [CANTIDAD_PEDIDA] - [CANTIDAD_RECIBIDA], [CODIGO_ESTADO] = N'CERRADO',
+        [FECHA_MODIFICACION_UTC] = SYSUTCDATETIME(), [ID_USUARIO_MODIFICACION] = @S_ID_USUARIO
+    WHERE [ID_ORDEN_COMPRA] = @I_ID_ORDEN_COMPRA AND [CANTIDAD_RECIBIDA] + [CANTIDAD_CERRADA] < [CANTIDAD_PEDIDA];
+    SET @O_FILAS_AFECTADAS = @@ROWCOUNT;
+    IF @O_FILAS_AFECTADAS = 0 BEGIN SET @O_CODIGO_ERROR = 50003; SET @O_MENSAJE = N'La orden no posee cantidades pendientes para cerrar.'; ROLLBACK; RETURN; END;
+    UPDATE [COMPRAS].[ORDENES_COMPRA] SET [CODIGO_ESTADO] = N'CERRADA', [MOTIVO_CIERRE] = @I_MOTIVO_CIERRE,
+        [FECHA_MODIFICACION_UTC] = SYSUTCDATETIME(), [ID_USUARIO_MODIFICACION] = @S_ID_USUARIO
+    WHERE [ID_ORDEN_COMPRA] = @I_ID_ORDEN_COMPRA;
+    SET @O_FILAS_AFECTADAS = @O_FILAS_AFECTADAS + @@ROWCOUNT;
+    INSERT INTO [AUDITORIA].[BITACORA_CAMBIOS_ESTADO] ([ENTIDAD], [PKEY], [CODIGO_ESTADO_ANTERIOR], [CODIGO_ESTADO_NUEVO], [MOTIVO], [ID_USUARIO], [ID_CORRELACION], [ID_USUARIO_ALTA])
+    VALUES (N'ORDEN_COMPRA', @I_ID_ORDEN_COMPRA, @V_ESTADO, N'CERRADA', @I_MOTIVO_CIERRE, @S_ID_USUARIO, NEWID(), @S_ID_USUARIO);
+    COMMIT;
+END;

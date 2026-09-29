@@ -1,0 +1,713 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Common_Save" xml:space="preserve"><value>Guardar</value></data>
+  <data name="Common_Cancel" xml:space="preserve"><value>Cancelar</value></data>
+  <data name="Common_New" xml:space="preserve"><value>Nuevo</value></data>
+  <data name="Common_Edit" xml:space="preserve"><value>Editar</value></data>
+  <data name="Common_Refresh" xml:space="preserve"><value>Actualizar</value></data>
+  <data name="Common_Back" xml:space="preserve"><value>Volver</value></data>
+  <data name="Common_Status" xml:space="preserve"><value>Estado</value></data>
+  <data name="Common_Active" xml:space="preserve"><value>Activo</value></data>
+  <data name="Common_Inactive" xml:space="preserve"><value>Inactivo</value></data>
+  <data name="Common_Confirmed" xml:space="preserve"><value>Confirmado</value></data>
+  <data name="Common_Error" xml:space="preserve"><value>Error</value></data>
+  <data name="Common_Required" xml:space="preserve"><value>Completá los campos obligatorios.</value></data>
+  <data name="Common_SelectRecord" xml:space="preserve"><value>Seleccioná un registro antes de continuar.</value></data>
+  <data name="Dashboard_Title" xml:space="preserve"><value>OxiTigre - Panel principal</value></data>
+  <data name="Dashboard_Modules" xml:space="preserve"><value>Módulos</value></data>
+  <data name="Dashboard_Home" xml:space="preserve"><value>Inicio</value></data>
+  <data name="Dashboard_Clients" xml:space="preserve"><value>Comercial · Clientes</value></data>
+  <data name="Dashboard_Users" xml:space="preserve"><value>Seguridad · Usuarios</value></data>
+  <data name="Dashboard_Inventory" xml:space="preserve"><value>Inventario</value></data>
+  <data name="Dashboard_Configuration" xml:space="preserve"><value>Configuración</value></data>
+  <data name="Dashboard_SwitchUser" xml:space="preserve"><value>Cerrar sesión</value></data>
+  <data name="Dashboard_ActiveCompany" xml:space="preserve"><value>Empresa activa</value></data>
+  <data name="Dashboard_Hello" xml:space="preserve"><value>Hola, {0}</value></data>
+  <data name="Dashboard_CompanyRoles" xml:space="preserve"><value>Empresa: {0}  ·  Roles: {1}</value></data>
+  <data name="Dashboard_ActiveClients" xml:space="preserve"><value>Clientes activos</value></data>
+  <data name="Dashboard_InactiveClients" xml:space="preserve"><value>Clientes inactivos</value></data>
+  <data name="Dashboard_SessionUntil" xml:space="preserve"><value>Sesión válida hasta</value></data>
+  <data name="Dashboard_QuickAccess" xml:space="preserve"><value>Accesos rápidos</value></data>
+  <data name="Dashboard_OpenClients" xml:space="preserve"><value>Abrir clientes</value></data>
+  <data name="Dashboard_ManageUsers" xml:space="preserve"><value>Administrar usuarios</value></data>
+  <data name="Dashboard_OpenInventory" xml:space="preserve"><value>Abrir inventario</value></data>
+  <data name="Session_Title" xml:space="preserve"><value>Sesión cerrada</value></data>
+  <data name="Session_AdminClosed" xml:space="preserve"><value>Un administrador solicitó cerrar tu sesión.</value></data>
+  <data name="Session_SaveAndClose" xml:space="preserve"><value>Guardá cualquier información externa que necesites.&#10;La aplicación se cerrará automáticamente.</value></data>
+  <data name="Session_CloseNow" xml:space="preserve"><value>Cerrar ahora</value></data>
+  <data name="Session_Countdown" xml:space="preserve"><value>Cierre automático en {0} segundos.</value></data>
+  <data name="Config_Title" xml:space="preserve"><value>Configuración</value></data>
+  <data name="Config_Company" xml:space="preserve"><value>Empresa</value></data>
+  <data name="Config_Structure" xml:space="preserve"><value>Estructura</value></data>
+  <data name="Config_Catalogs" xml:space="preserve"><value>Catálogos</value></data>
+  <data name="Config_Parameters" xml:space="preserve"><value>Parámetros</value></data>
+  <data name="Config_ModulesErrors" xml:space="preserve"><value>Módulos y errores</value></data>
+  <data name="Config_Language" xml:space="preserve"><value>Idioma</value></data>
+  <data name="Config_Translations" xml:space="preserve"><value>Traducciones</value></data>
+  <data name="Config_Branches" xml:space="preserve"><value>Sucursales</value></data>
+  <data name="Config_Units" xml:space="preserve"><value>Unidades operativas</value></data>
+  <data name="Config_PhoneTypes" xml:space="preserve"><value>Tipos de teléfono</value></data>
+  <data name="Config_States" xml:space="preserve"><value>Estados visibles</value></data>
+  <data name="Config_Modules" xml:space="preserve"><value>Módulos</value></data>
+  <data name="Config_Errors" xml:space="preserve"><value>Códigos de error</value></data>
+  <data name="Config_LegalName" xml:space="preserve"><value>Razón social</value></data>
+  <data name="Config_TradeName" xml:space="preserve"><value>Nombre de fantasía</value></data>
+  <data name="Config_TaxId" xml:space="preserve"><value>CUIT</value></data>
+  <data name="Config_Email" xml:space="preserve"><value>Correo</value></data>
+  <data name="Config_Code" xml:space="preserve"><value>Código</value></data>
+  <data name="Config_Name" xml:space="preserve"><value>Nombre</value></data>
+  <data name="Config_Description" xml:space="preserve"><value>Descripción</value></data>
+  <data name="Config_Address" xml:space="preserve"><value>Domicilio</value></data>
+  <data name="Config_City" xml:space="preserve"><value>Localidad</value></data>
+  <data name="Config_Province" xml:space="preserve"><value>Provincia</value></data>
+  <data name="Config_PostalCode" xml:space="preserve"><value>Código postal</value></data>
+  <data name="Config_Branch" xml:space="preserve"><value>Sucursal</value></data>
+  <data name="Config_Module" xml:space="preserve"><value>Módulo</value></data>
+  <data name="Config_ModuleNumber" xml:space="preserve"><value>Número de módulo</value></data>
+  <data name="Config_Order" xml:space="preserve"><value>Orden</value></data>
+  <data name="Config_Key" xml:space="preserve"><value>Clave</value></data>
+  <data name="Config_Value" xml:space="preserve"><value>Valor</value></data>
+  <data name="Config_DataType" xml:space="preserve"><value>Tipo de dato</value></data>
+  <data name="Config_IsSecret" xml:space="preserve"><value>Es secreto</value></data>
+  <data name="Config_SecretReference" xml:space="preserve"><value>Nueva referencia secreta</value></data>
+  <data name="Config_Entity" xml:space="preserve"><value>Entidad</value></data>
+  <data name="Config_Culture" xml:space="preserve"><value>Cultura</value></data>
+  <data name="Config_Severity" xml:space="preserve"><value>Severidad</value></data>
+  <data name="Config_ProbableCause" xml:space="preserve"><value>Causa probable</value></data>
+  <data name="Config_RecommendedAction" xml:space="preserve"><value>Acción recomendada</value></data>
+  <data name="Config_ValidUntil" xml:space="preserve"><value>Vigente hasta (AAAA-MM-DD o vacío)</value></data>
+  <data name="Config_ValidUntilColumn" xml:space="preserve"><value>Vigente hasta</value></data>
+  <data name="Config_Initial" xml:space="preserve"><value>Inicial</value></data>
+  <data name="Config_Final" xml:space="preserve"><value>Final</value></data>
+  <data name="Config_HasSecret" xml:space="preserve"><value>Tiene referencia secreta</value></data>
+  <data name="Config_ErrorNumber" xml:space="preserve"><value>Correlativo</value></data>
+  <data name="Config_ErrorCode" xml:space="preserve"><value>Código de error</value></data>
+  <data name="Config_Global" xml:space="preserve"><value>Global</value></data>
+  <data name="Config_BranchRequired" xml:space="preserve"><value>Creá al menos una sucursal antes de agregar unidades operativas.</value></data>
+  <data name="Config_Spanish" xml:space="preserve"><value>Español (Argentina)</value></data>
+  <data name="Config_English" xml:space="preserve"><value>English (United States)</value></data>
+  <data name="Config_LanguageBehavior" xml:space="preserve"><value>Al guardar, la interfaz se recargará en el idioma elegido sin cerrar tu sesión.</value></data>
+  <data name="Config_LanguageRestart" xml:space="preserve"><value>El idioma fue guardado. La interfaz se recargará ahora.</value></data>
+  <data name="Config_ImportLanguage" xml:space="preserve"><value>Importar idioma</value></data>
+  <data name="Config_LanguageFileFilter" xml:space="preserve"><value>Paquete de idioma JSON (*.json)|*.json</value></data>
+  <data name="Config_LanguageImported" xml:space="preserve"><value>Se instaló {0} con {1} textos validados. Guardá el idioma para aplicarlo.</value></data>
+  <data name="Config_LanguageInvalid" xml:space="preserve"><value>El archivo no se pudo importar: {0}</value></data>
+  <data name="Config_Saved" xml:space="preserve"><value>Configuración guardada correctamente.</value></data>
+  <data name="Config_ErrorCreated" xml:space="preserve"><value>Se creó el código de error {0}.</value></data>
+  <data name="Config_ReadOnly" xml:space="preserve"><value>Tu usuario puede consultar esta configuración, pero no modificarla.</value></data>
+  <data name="Common_Yes" xml:space="preserve"><value>Sí</value></data>
+  <data name="Common_No" xml:space="preserve"><value>No</value></data>
+  <data name="Login_Title" xml:space="preserve"><value>OxiTigre · Acceso</value></data>
+  <data name="Login_Help" xml:space="preserve"><value>Ingresá tus credenciales y después elegí la empresa habilitada para trabajar.</value></data>
+  <data name="Login_BrandSubtitle" xml:space="preserve"><value>Gestión industrial con trazabilidad de punta a punta.</value></data>
+  <data name="Login_BrandSteps" xml:space="preserve"><value>Operación conectada · Información clara · Accesos seguros</value></data>
+  <data name="Login_CredentialsTitle" xml:space="preserve"><value>Bienvenido</value></data>
+  <data name="Login_CredentialsHelp" xml:space="preserve"><value>Ingresá tus credenciales para comenzar.</value></data>
+  <data name="Login_CompanyTitle" xml:space="preserve"><value>Elegí empresa y sucursal</value></data>
+  <data name="Login_CompanyStepHelp" xml:space="preserve"><value>Tu identidad ya fue verificada. Ahora seleccioná dónde vas a trabajar.</value></data>
+  <data name="Login_Continue" xml:space="preserve"><value>Continuar</value></data>
+  <data name="Login_Back" xml:space="preserve"><value>Volver</value></data>
+  <data name="Login_Secure" xml:space="preserve"><value>La aplicación no se conecta directamente a la base de datos.</value></data>
+  <data name="Login_ValidatedUser" xml:space="preserve"><value>Acceso verificado para {0}</value></data>
+  <data name="Login_CredentialsRequired" xml:space="preserve"><value>Completá el usuario y la contraseña.</value></data>
+  <data name="Login_User" xml:space="preserve"><value>Usuario</value></data>
+  <data name="Login_Password" xml:space="preserve"><value>Contraseña</value></data>
+  <data name="Login_Company" xml:space="preserve"><value>Empresa</value></data>
+  <data name="Login_Enter" xml:space="preserve"><value>Ingresar</value></data>
+  <data name="Login_Validating" xml:space="preserve"><value>Validando...</value></data>
+  <data name="Login_Invalid" xml:space="preserve"><value>Usuario o contraseña incorrectos.</value></data>
+  <data name="Login_SelectCompanyContinue" xml:space="preserve"><value>Seleccioná dónde vas a trabajar y presioná Ingresar al sistema.</value></data>
+  <data name="Login_SelectCompany" xml:space="preserve"><value>Seleccioná una empresa y sucursal.</value></data>
+  <data name="Login_CompanyFailed" xml:space="preserve"><value>No se pudo iniciar sesión en la empresa elegida.</value></data>
+  <data name="Login_ApiUnavailable" xml:space="preserve"><value>No fue posible comunicarse con la API.</value></data>
+  <data name="Login_OperationFailed" xml:space="preserve"><value>No se pudo completar la operación.</value></data>
+  <data name="Login_BrandBenefits" xml:space="preserve"><value>⌘   Operación conectada&#xD;&#xA;&#xD;&#xA;▥   Información clara&#xD;&#xA;&#xD;&#xA;▣   Accesos seguros</value></data>
+  <data name="Login_RememberUser" xml:space="preserve"><value>Recordar mi usuario en este equipo</value></data>
+  <data name="Login_ShowPassword" xml:space="preserve"><value>Mostrar u ocultar contraseña</value></data>
+  <data name="Login_ApiChecking" xml:space="preserve"><value>Verificando API...</value></data>
+  <data name="Login_ApiAvailable" xml:space="preserve"><value>API disponible</value></data>
+  <data name="Login_ApiUnavailableShort" xml:space="preserve"><value>API no disponible</value></data>
+  <data name="Login_LanguageSpanish" xml:space="preserve"><value>Español</value></data>
+  <data name="Login_LanguageEnglish" xml:space="preserve"><value>English</value></data>
+  <data name="Login_RememberAccess" xml:space="preserve"><value>Recordar esta sucursal en este equipo</value></data>
+  <data name="Login_ChangeUser" xml:space="preserve"><value>Cambiar de usuario</value></data>
+  <data name="Login_EnterSystem" xml:space="preserve"><value>Ingresar al sistema</value></data>
+  <data name="Login_NoBranches" xml:space="preserve"><value>Sin sucursales activas</value></data>
+  <data name="Login_ValidatedAccess" xml:space="preserve"><value>Hola, {0}  ·  Usuario validado</value></data>
+  <data name="Login_SecurityHelp" xml:space="preserve"><value>¿Necesitás ayuda para ingresar?</value></data>
+  <data name="Login_AccessScope" xml:space="preserve"><value>Solo verás la información habilitada para esta empresa y sucursal.</value></data>
+  <data name="Login_StepCredentials" xml:space="preserve"><value>Credenciales</value></data>
+  <data name="Login_StepAccess" xml:space="preserve"><value>Empresa y sucursal</value></data>
+  <data name="Login_Operational" xml:space="preserve"><value>Operativa</value></data>
+  <data name="Password_Title" xml:space="preserve"><value>Establecer contraseña</value></data>
+  <data name="Password_New" xml:space="preserve"><value>Nueva contraseña</value></data>
+  <data name="Password_Confirm" xml:space="preserve"><value>Confirmar contraseña</value></data>
+  <data name="Password_Change" xml:space="preserve"><value>Cambiar</value></data>
+  <data name="Password_NotMatch" xml:space="preserve"><value>Las contraseñas no coinciden.</value></data>
+  <data name="Password_ChangeFailed" xml:space="preserve"><value>No se pudo cambiar la contraseña temporal.</value></data>
+  <data name="Password_Changed" xml:space="preserve"><value>Contraseña actualizada. Ingresá nuevamente.</value></data>
+  <data name="Password_Required" xml:space="preserve"><value>Ingresá y confirmá una contraseña.</value></data>
+  <data name="Password_Policy" xml:space="preserve"><value>La contraseña debe tener al menos 10 caracteres, una mayúscula, una minúscula y un número.</value></data>
+  <data name="Clients_Title" xml:space="preserve"><value>Comercial - Clientes</value></data>
+  <data name="Clients_Heading" xml:space="preserve"><value>Clientes</value></data>
+  <data name="Clients_New" xml:space="preserve"><value>Nuevo cliente</value></data>
+  <data name="Clients_ChangeStatus" xml:space="preserve"><value>Cambiar estado</value></data>
+  <data name="Clients_ChangeQuestion" xml:space="preserve"><value>¿Cambiar {0} a {1}?</value></data>
+  <data name="Clients_PersonNatural" xml:space="preserve"><value>Persona física</value></data>
+  <data name="Clients_PersonLegal" xml:space="preserve"><value>Persona jurídica</value></data>
+  <data name="Clients_NameBusiness" xml:space="preserve"><value>Nombre / razón social</value></data>
+  <data name="Clients_PrimaryPhone" xml:space="preserve"><value>Teléfono principal</value></data>
+  <data name="Clients_PhoneCount" xml:space="preserve"><value>Cantidad de teléfonos</value></data>
+  <data name="Clients_LoadFailed" xml:space="preserve"><value>No se pudieron cargar los clientes: {0}</value></data>
+  <data name="Grid_Code" xml:space="preserve"><value>Código</value></data>
+  <data name="Grid_Type" xml:space="preserve"><value>Tipo</value></data>
+  <data name="Grid_Surname" xml:space="preserve"><value>Apellido</value></data>
+  <data name="Grid_Document" xml:space="preserve"><value>Documento</value></data>
+  <data name="Grid_Email" xml:space="preserve"><value>Correo</value></data>
+  <data name="Grid_Status" xml:space="preserve"><value>Estado</value></data>
+  <data name="Grid_User" xml:space="preserve"><value>Usuario</value></data>
+  <data name="Grid_GivenNames" xml:space="preserve"><value>Nombres</value></data>
+  <data name="Grid_ModuleCode" xml:space="preserve"><value>Código de módulo</value></data>
+  <data name="ClientEdit_Data" xml:space="preserve"><value>Datos del cliente</value></data>
+  <data name="ClientEdit_PersonType" xml:space="preserve"><value>Tipo de persona</value></data>
+  <data name="ClientEdit_Name" xml:space="preserve"><value>Nombre</value></data>
+  <data name="ClientEdit_BusinessName" xml:space="preserve"><value>Razón social</value></data>
+  <data name="ClientEdit_Surname" xml:space="preserve"><value>Apellido</value></data>
+  <data name="ClientEdit_DocumentType" xml:space="preserve"><value>Tipo de documento</value></data>
+  <data name="ClientEdit_DocumentNumber" xml:space="preserve"><value>Número de documento</value></data>
+  <data name="ClientEdit_Email" xml:space="preserve"><value>Correo electrónico</value></data>
+  <data name="ClientEdit_Observation" xml:space="preserve"><value>Observación</value></data>
+  <data name="ClientEdit_Phones" xml:space="preserve"><value>Teléfonos</value></data>
+  <data name="ClientEdit_Type" xml:space="preserve"><value>Tipo</value></data>
+  <data name="ClientEdit_Country" xml:space="preserve"><value>País</value></data>
+  <data name="ClientEdit_CountryCode" xml:space="preserve"><value>Código país</value></data>
+  <data name="ClientEdit_Area" xml:space="preserve"><value>Área</value></data>
+  <data name="ClientEdit_Number" xml:space="preserve"><value>Número</value></data>
+  <data name="ClientEdit_Extension" xml:space="preserve"><value>Interno</value></data>
+  <data name="ClientEdit_Primary" xml:space="preserve"><value>Principal</value></data>
+  <data name="ClientEdit_WhatsApp" xml:space="preserve"><value>Permite WhatsApp</value></data>
+  <data name="ClientEdit_AddPhone" xml:space="preserve"><value>Agregar teléfono</value></data>
+  <data name="ClientEdit_RemovePhone" xml:space="preserve"><value>Quitar seleccionado</value></data>
+  <data name="ClientEdit_SaveDraft" xml:space="preserve"><value>Guardar borrador</value></data>
+  <data name="ClientEdit_DiscardDraft" xml:space="preserve"><value>Descartar borrador</value></data>
+  <data name="ClientEdit_SaveClient" xml:space="preserve"><value>Guardar cliente</value></data>
+  <data name="ClientEdit_DraftSaved" xml:space="preserve"><value>Borrador guardado. Podés cerrar la pantalla y continuar más tarde.</value></data>
+  <data name="ClientEdit_DiscardQuestion" xml:space="preserve"><value>¿Descartar el borrador guardado?</value></data>
+  <data name="ClientEdit_DraftDiscarded" xml:space="preserve"><value>Borrador descartado.</value></data>
+  <data name="ClientEdit_NewTitle" xml:space="preserve"><value>Nuevo cliente</value></data>
+  <data name="ClientEdit_EditTitle" xml:space="preserve"><value>Editar cliente</value></data>
+  <data name="ClientEdit_DraftQuestion" xml:space="preserve"><value>Existe un borrador guardado el {0}. ¿Querés continuar esa carga?</value></data>
+  <data name="ClientEdit_InvalidPhone" xml:space="preserve"><value>Revisá tipo, país, código, área, número e interno. Los datos telefónicos deben contener solo números.</value></data>
+  <data name="ClientEdit_AreaRequired" xml:space="preserve"><value>El código de área es obligatorio para Argentina.</value></data>
+  <data name="ClientEdit_NameRequired" xml:space="preserve"><value>Completá el nombre y el apellido cuando sea persona física.</value></data>
+  <data name="ClientEdit_DocumentRequired" xml:space="preserve"><value>Seleccioná el tipo e ingresá el número de documento.</value></data>
+  <data name="ClientEdit_InvalidEmail" xml:space="preserve"><value>Ingresá un correo electrónico válido.</value></data>
+  <data name="ClientEdit_PrimaryPhoneRequired" xml:space="preserve"><value>Agregá teléfonos y marcá exactamente uno como principal.</value></data>
+  <data name="ClientEdit_AreaCode" xml:space="preserve"><value>Código de área</value></data>
+  <data name="Users_Title" xml:space="preserve"><value>Administración de usuarios</value></data>
+  <data name="Users_Heading" xml:space="preserve"><value>Usuarios y accesos</value></data>
+  <data name="Users_ResetPassword" xml:space="preserve"><value>Reiniciar clave</value></data>
+  <data name="Users_RevokeSessions" xml:space="preserve"><value>Revocar sesiones</value></data>
+  <data name="Users_TemporaryAssigned" xml:space="preserve"><value>Contraseña temporal asignada. El usuario deberá cambiarla al ingresar.</value></data>
+  <data name="Users_RevokeOwnQuestion" xml:space="preserve"><value>¿Revocar todas las sesiones de {0}, incluida esta sesión?</value></data>
+  <data name="Users_RevokeQuestion" xml:space="preserve"><value>¿Revocar todas las sesiones vigentes de {0}?</value></data>
+  <data name="Users_Revoked" xml:space="preserve"><value>Sesiones revocadas correctamente.</value></data>
+  <data name="Users_Roles" xml:space="preserve"><value>Roles</value></data>
+  <data name="UserEdit_NewTitle" xml:space="preserve"><value>Nuevo usuario</value></data>
+  <data name="UserEdit_EditTitle" xml:space="preserve"><value>Editar {0}</value></data>
+  <data name="UserEdit_GivenNames" xml:space="preserve"><value>Nombres</value></data>
+  <data name="UserEdit_Surname" xml:space="preserve"><value>Apellido</value></data>
+  <data name="UserEdit_Email" xml:space="preserve"><value>Correo</value></data>
+  <data name="UserEdit_TemporaryPassword" xml:space="preserve"><value>Contraseña temporal</value></data>
+  <data name="UserEdit_Roles" xml:space="preserve"><value>Roles</value></data>
+  <data name="UserEdit_Required" xml:space="preserve"><value>Completá los datos obligatorios y seleccioná al menos un rol.</value></data>
+  <data name="Inventory_Title" xml:space="preserve"><value>Inventario</value></data>
+  <data name="Inventory_Products" xml:space="preserve"><value>Productos</value></data>
+  <data name="Inventory_NewProduct" xml:space="preserve"><value>Nuevo producto</value></data>
+  <data name="Inventory_Structure" xml:space="preserve"><value>Depósitos y ubicaciones</value></data>
+  <data name="Inventory_Warehouses" xml:space="preserve"><value>Depósitos</value></data>
+  <data name="Inventory_Locations" xml:space="preserve"><value>Ubicaciones</value></data>
+  <data name="Inventory_Catalogs" xml:space="preserve"><value>Categorías y unidades</value></data>
+  <data name="Inventory_Categories" xml:space="preserve"><value>Categorías</value></data>
+  <data name="Inventory_Units" xml:space="preserve"><value>Unidades de medida</value></data>
+  <data name="Inventory_Stock" xml:space="preserve"><value>Existencias</value></data>
+  <data name="Inventory_Movements" xml:space="preserve"><value>Movimientos</value></data>
+  <data name="Inventory_NewMovement" xml:space="preserve"><value>Nuevo movimiento</value></data>
+  <data name="Inventory_UpdateMinimum" xml:space="preserve"><value>Modificar mínimo</value></data>
+  <data name="Inventory_Minimum" xml:space="preserve"><value>Stock mínimo</value></data>
+  <data name="Inventory_BelowMinimum" xml:space="preserve"><value>Bajo mínimo</value></data>
+  <data name="Inventory_Category" xml:space="preserve"><value>Categoría</value></data>
+  <data name="Inventory_Unit" xml:space="preserve"><value>Unidad</value></data>
+  <data name="Inventory_Symbol" xml:space="preserve"><value>Símbolo</value></data>
+  <data name="Inventory_AllowsDecimals" xml:space="preserve"><value>Permite decimales</value></data>
+  <data name="Inventory_Barcode" xml:space="preserve"><value>Código de barras</value></data>
+  <data name="Inventory_Warehouse" xml:space="preserve"><value>Depósito</value></data>
+  <data name="Inventory_Location" xml:space="preserve"><value>Ubicación</value></data>
+  <data name="Inventory_Address" xml:space="preserve"><value>Domicilio</value></data>
+<data name="Inventory_Quantity" xml:space="preserve"><value>Cantidad</value></data>
+<data name="Inventory_PhysicalStock" xml:space="preserve"><value>Stock físico</value></data>
+<data name="Inventory_ReservedStock" xml:space="preserve"><value>Stock reservado</value></data>
+<data name="Inventory_AvailableStock" xml:space="preserve"><value>Stock disponible</value></data>
+  <data name="Inventory_MovementType" xml:space="preserve"><value>Tipo de movimiento</value></data>
+  <data name="Inventory_Date" xml:space="preserve"><value>Fecha</value></data>
+  <data name="Inventory_Observation" xml:space="preserve"><value>Observación</value></data>
+  <data name="Inventory_Product" xml:space="preserve"><value>Producto</value></data>
+  <data name="Inventory_Origin" xml:space="preserve"><value>Origen</value></data>
+  <data name="Inventory_Destination" xml:space="preserve"><value>Destino</value></data>
+  <data name="Inventory_AddLine" xml:space="preserve"><value>Agregar renglón</value></data>
+  <data name="Inventory_RemoveLine" xml:space="preserve"><value>Quitar renglón</value></data>
+  <data name="Inventory_ConfirmMovement" xml:space="preserve"><value>Confirmar movimiento</value></data>
+  <data name="Inventory_MovementEmpty" xml:space="preserve"><value>Agregá al menos un renglón antes de confirmar.</value></data>
+  <data name="Inventory_InvalidNumber" xml:space="preserve"><value>Ingresá una cantidad válida mayor que cero.</value></data>
+  <data name="Inventory_Saved" xml:space="preserve"><value>Inventario actualizado correctamente.</value></data>
+  <data name="Inventory_MovementCreated" xml:space="preserve"><value>Movimiento confirmado correctamente.</value></data>
+  <data name="Inventory_LoadFailed" xml:space="preserve"><value>No se pudo cargar Inventario: {0}</value></data>
+  <data name="Inventory_Entry" xml:space="preserve"><value>Entrada</value></data>
+  <data name="Inventory_Exit" xml:space="preserve"><value>Salida</value></data>
+  <data name="Inventory_Transfer" xml:space="preserve"><value>Transferencia</value></data>
+  <data name="Inventory_AdjustmentEntry" xml:space="preserve"><value>Ajuste de entrada</value></data>
+  <data name="Inventory_AdjustmentExit" xml:space="preserve"><value>Ajuste de salida</value></data>
+<data name="Inventory_NoSelection" xml:space="preserve"><value>Sin seleccionar</value></data>
+<data name="Inventory_Overview" xml:space="preserve"><value>Controlá productos, depósitos y existencias. El stock cambia únicamente mediante movimientos confirmados y las reservas de pedidos reducen el disponible.</value></data>
+  <data name="Dashboard_Sales" xml:space="preserve"><value>Comercial · Pedidos y ventas</value></data>
+  <data name="Dashboard_OpenSales" xml:space="preserve"><value>Abrir pedidos y ventas</value></data>
+  <data name="Sales_Title" xml:space="preserve"><value>Pedidos y ventas</value></data>
+  <data name="Sales_Orders" xml:space="preserve"><value>Pedidos</value></data>
+  <data name="Sales_Sales" xml:space="preserve"><value>Ventas</value></data>
+  <data name="Sales_PriceLists" xml:space="preserve"><value>Listas de precios</value></data>
+  <data name="Sales_Prices" xml:space="preserve"><value>Precios por producto</value></data>
+  <data name="Sales_NewOrder" xml:space="preserve"><value>Nuevo pedido</value></data>
+  <data name="Sales_EditOrder" xml:space="preserve"><value>Editar pedido</value></data>
+  <data name="Sales_ConfirmOrder" xml:space="preserve"><value>Confirmar y reservar</value></data>
+  <data name="Sales_CancelOrder" xml:space="preserve"><value>Cancelar pedido</value></data>
+  <data name="Sales_CreateSale" xml:space="preserve"><value>Generar venta</value></data>
+  <data name="Sales_NewList" xml:space="preserve"><value>Nueva lista</value></data>
+  <data name="Sales_EditList" xml:space="preserve"><value>Editar lista</value></data>
+  <data name="Sales_NewPrice" xml:space="preserve"><value>Nuevo precio</value></data>
+  <data name="Sales_EditPrice" xml:space="preserve"><value>Editar precio</value></data>
+  <data name="Sales_Client" xml:space="preserve"><value>Cliente</value></data>
+  <data name="Sales_Currency" xml:space="preserve"><value>Moneda</value></data>
+  <data name="Sales_PriceList" xml:space="preserve"><value>Lista de precios</value></data>
+  <data name="Sales_UnitPrice" xml:space="preserve"><value>Precio unitario</value></data>
+  <data name="Sales_Discount" xml:space="preserve"><value>Descuento %</value></data>
+  <data name="Sales_Tax" xml:space="preserve"><value>Impuesto %</value></data>
+  <data name="Sales_Subtotal" xml:space="preserve"><value>Subtotal</value></data>
+  <data name="Sales_Total" xml:space="preserve"><value>Total</value></data>
+  <data name="Sales_Order" xml:space="preserve"><value>Pedido</value></data>
+  <data name="Sales_Sale" xml:space="preserve"><value>Venta</value></data>
+  <data name="Sales_ValidFrom" xml:space="preserve"><value>Vigente desde</value></data>
+  <data name="Sales_ValidUntil" xml:space="preserve"><value>Vigente hasta</value></data>
+  <data name="Sales_AddLine" xml:space="preserve"><value>Agregar renglón</value></data>
+  <data name="Sales_LinkAsset" xml:space="preserve"><value>Vincular tubo o activo</value></data>
+  <data name="Sales_UnlinkAsset" xml:space="preserve"><value>Quitar vínculo</value></data>
+  <data name="Sales_Asset" xml:space="preserve"><value>Tubo o activo</value></data>
+  <data name="Sales_ChargedLine" xml:space="preserve"><value>Renglón cobrado</value></data>
+  <data name="Sales_LinkType" xml:space="preserve"><value>Finalidad</value></data>
+  <data name="Sales_ReturnMode" xml:space="preserve"><value>Retiro o entrega</value></data>
+  <data name="Sales_ClientService" xml:space="preserve"><value>Servicio sobre activo del cliente</value></data>
+  <data name="Sales_AssetSale" xml:space="preserve"><value>Venta de activo OxiTigre</value></data>
+  <data name="Sales_AssetLoan" xml:space="preserve"><value>Préstamo de activo OxiTigre</value></data>
+  <data name="Sales_AssetExchange" xml:space="preserve"><value>Intercambio temporal</value></data>
+  <data name="Sales_ClientPickup" xml:space="preserve"><value>Retira el cliente</value></data>
+  <data name="Sales_OxiTigreDelivery" xml:space="preserve"><value>Entrega OxiTigre</value></data>
+  <data name="Sales_NotApplicable" xml:space="preserve"><value>No aplica</value></data>
+  <data name="Sales_ProductWarehouseRequired" xml:space="preserve"><value>Elegí un depósito para el producto físico.</value></data>
+  <data name="Sales_AssetLineRequired" xml:space="preserve"><value>Agregá el renglón que se cobrará antes de vincular el activo.</value></data>
+  <data name="Sales_NoAssets" xml:space="preserve"><value>No hay activos de OxiTigre o del cliente disponibles para vincular.</value></data>
+  <data name="Sales_DuplicateAsset" xml:space="preserve"><value>Ese activo ya está vinculado al mismo renglón y finalidad.</value></data>
+  <data name="Inventory_ItemType" xml:space="preserve"><value>Tipo de ítem</value></data>
+  <data name="Inventory_ItemProduct" xml:space="preserve"><value>Producto físico</value></data>
+  <data name="Inventory_ItemService" xml:space="preserve"><value>Servicio sin stock</value></data>
+  <data name="Sales_RemoveLine" xml:space="preserve"><value>Quitar renglón</value></data>
+  <data name="Sales_NoSelection" xml:space="preserve"><value>Seleccioná un registro válido.</value></data>
+  <data name="Sales_EmptyOrder" xml:space="preserve"><value>El pedido debe tener al menos un renglón.</value></data>
+  <data name="Sales_InvalidNumber" xml:space="preserve"><value>Ingresá cantidades, precios y porcentajes válidos.</value></data>
+  <data name="Sales_Saved" xml:space="preserve"><value>La operación comercial se completó correctamente.</value></data>
+  <data name="Sales_ConfirmQuestion" xml:space="preserve"><value>¿Confirmar el pedido y reservar el stock?</value></data>
+  <data name="Sales_CancelQuestion" xml:space="preserve"><value>¿Cancelar el pedido y liberar sus reservas?</value></data>
+  <data name="Sales_SaleQuestion" xml:space="preserve"><value>¿Generar la venta y descontar el stock reservado?</value></data>
+  <data name="Sales_Draft" xml:space="preserve"><value>Borrador</value></data>
+  <data name="Sales_Reserved" xml:space="preserve"><value>Confirmado</value></data>
+  <data name="Sales_Cancelled" xml:space="preserve"><value>Cancelado</value></data>
+<data name="Sales_Sold" xml:space="preserve"><value>Vendido</value></data>
+<data name="Sales_Overview" xml:space="preserve"><value>El pedido registra lo solicitado; al confirmarlo reserva stock y al generar la venta descuenta la existencia física.</value></data>
+<data name="Sales_OrdersHelp" xml:space="preserve"><value>Borrador: editable y sin reserva. Confirmado: stock reservado. Vendido o cancelado: estado final.</value></data>
+<data name="Sales_SalesHelp" xml:space="preserve"><value>Esta grilla contiene ventas internas generadas desde pedidos confirmados; no representa todavía una factura fiscal.</value></data>
+<data name="Sales_SaleDetails" xml:space="preserve"><value>Detalle de la venta seleccionada</value></data>
+<data name="Sales_PricesHelp" xml:space="preserve"><value>Definí listas y precios sugeridos por producto. El importe queda guardado en el pedido para conservar su historial.</value></data>
+<data name="Sales_SetupRequired" xml:space="preserve"><value>Para crear un pedido deben existir un cliente, una lista activa, un producto y un depósito.</value></data>
+<data name="Sales_Promotions" xml:space="preserve"><value>Promociones</value></data>
+<data name="Sales_PromotionsHelp" xml:space="preserve"><value>Configurá promociones por producto. El pedido suma renglones iguales y la base de datos calcula el beneficio sobre la cantidad total.</value></data>
+<data name="Sales_NewPromotion" xml:space="preserve"><value>Nueva promoción</value></data>
+<data name="Sales_EditPromotion" xml:space="preserve"><value>Editar promoción</value></data>
+<data name="Sales_Promotion" xml:space="preserve"><value>Promoción</value></data>
+<data name="Sales_NoPromotion" xml:space="preserve"><value>Sin promoción</value></data>
+<data name="Sales_PromotionType" xml:space="preserve"><value>Tipo de promoción</value></data>
+<data name="Sales_PromotionQuantityPaid" xml:space="preserve"><value>Llevá N, pagá M</value></data>
+<data name="Sales_PromotionPercentageUnits" xml:space="preserve"><value>Porcentaje en unidades bonificadas</value></data>
+<data name="Sales_PromotionPackagePrice" xml:space="preserve"><value>Precio fijo por paquete</value></data>
+<data name="Sales_RequiredQuantity" xml:space="preserve"><value>Cantidad requerida</value></data>
+<data name="Sales_PaidQuantity" xml:space="preserve"><value>Cantidad pagada</value></data>
+<data name="Sales_BonusQuantity" xml:space="preserve"><value>Unidades bonificadas</value></data>
+<data name="Sales_PackagePrice" xml:space="preserve"><value>Precio del paquete</value></data>
+<data name="Sales_PromotionInvalid" xml:space="preserve"><value>Revisá el producto, la vigencia y los valores de la promoción.</value></data>
+<data name="Sales_PromotionReplacesManual" xml:space="preserve"><value>Al elegir una promoción, el descuento manual queda en cero y el servidor calcula el beneficio.</value></data>
+<data name="Sales_DiscountAmount" xml:space="preserve"><value>Importe descontado</value></data>
+<data name="Sales_ProductCode" xml:space="preserve"><value>Código de producto</value></data>
+<data name="Sales_PromotionCode" xml:space="preserve"><value>Código de promoción</value></data>
+<data name="Sales_PromotionProductRequired" xml:space="preserve"><value>Debe existir al menos un producto para crear una promoción.</value></data>
+<data name="Dashboard_Purchases" xml:space="preserve"><value>Compras</value></data>
+  <data name="Dashboard_Traceability" xml:space="preserve"><value>Trazabilidad</value></data>
+  <data name="Dashboard_Logistics" xml:space="preserve"><value>Logística</value></data>
+  <data name="Common_Client" xml:space="preserve"><value>Cliente</value></data>
+  <data name="Common_Name" xml:space="preserve"><value>Nombre</value></data>
+  <data name="Common_Address" xml:space="preserve"><value>Domicilio</value></data>
+  <data name="Common_City" xml:space="preserve"><value>Localidad</value></data>
+  <data name="Common_Province" xml:space="preserve"><value>Provincia</value></data>
+  <data name="Common_PostalCode" xml:space="preserve"><value>Código postal</value></data>
+  <data name="Common_Contact" xml:space="preserve"><value>Contacto</value></data>
+  <data name="Common_Phone" xml:space="preserve"><value>Teléfono</value></data>
+  <data name="Common_Email" xml:space="preserve"><value>Correo</value></data>
+  <data name="Common_Instructions" xml:space="preserve"><value>Instrucciones</value></data>
+  <data name="Common_Priority" xml:space="preserve"><value>Prioridad</value></data>
+  <data name="Common_Date" xml:space="preserve"><value>Fecha</value></data>
+  <data name="Common_Observation" xml:space="preserve"><value>Observación</value></data>
+  <data name="Common_Product" xml:space="preserve"><value>Producto</value></data>
+  <data name="Common_Unit" xml:space="preserve"><value>Unidad</value></data>
+  <data name="Common_Condition" xml:space="preserve"><value>Condición</value></data>
+  <data name="Common_Reason" xml:space="preserve"><value>Motivo</value></data>
+  <data name="Common_Result" xml:space="preserve"><value>Resultado</value></data>
+  <data name="Logistics_Title" xml:space="preserve"><value>Logística y hojas de ruta</value></data>
+  <data name="Logistics_Help" xml:space="preserve"><value>Planificá solicitudes, custodia y recorridos. Cada hoja conserva la información histórica usada al despachar.</value></data>
+  <data name="Logistics_Addresses" xml:space="preserve"><value>Domicilios y horarios</value></data>
+  <data name="Logistics_Requests" xml:space="preserve"><value>Solicitudes</value></data>
+  <data name="Logistics_Routes" xml:space="preserve"><value>Hojas de ruta</value></data>
+  <data name="Logistics_History" xml:space="preserve"><value>Historial y avisos</value></data>
+  <data name="Logistics_NewAddress" xml:space="preserve"><value>Nuevo domicilio</value></data>
+  <data name="Logistics_NewRequest" xml:space="preserve"><value>Nueva solicitud</value></data>
+  <data name="Logistics_CreateRoute" xml:space="preserve"><value>Crear hoja de ruta</value></data>
+  <data name="Logistics_AssignOffer" xml:space="preserve"><value>Asignar oferta</value></data>
+  <data name="Logistics_EditOffer" xml:space="preserve"><value>Editar oferta</value></data>
+  <data name="Logistics_Dispatch" xml:space="preserve"><value>Despachar</value></data>
+  <data name="Logistics_CompleteStop" xml:space="preserve"><value>Confirmar parada</value></data>
+  <data name="Logistics_Custody" xml:space="preserve"><value>Activos bajo custodia</value></data>
+  <data name="Logistics_Stops" xml:space="preserve"><value>Paradas de la hoja</value></data>
+  <data name="Logistics_Events" xml:space="preserve"><value>Eventos inmutables</value></data>
+  <data name="Logistics_Notifications" xml:space="preserve"><value>Notificaciones pendientes</value></data>
+  <data name="Logistics_Address" xml:space="preserve"><value>Domicilio del servicio</value></data>
+  <data name="Logistics_ServiceType" xml:space="preserve"><value>Tipo de servicio</value></data>
+  <data name="Logistics_FromTime" xml:space="preserve"><value>Horario desde (HH:mm)</value></data>
+  <data name="Logistics_ToTime" xml:space="preserve"><value>Horario hasta (HH:mm)</value></data>
+  <data name="Logistics_AssetSerial" xml:space="preserve"><value>Serie del tubo/activo</value></data>
+  <data name="Logistics_Owner" xml:space="preserve"><value>Propietario</value></data>
+  <data name="Logistics_Role" xml:space="preserve"><value>Rol en el servicio</value></data>
+  <data name="Logistics_Content" xml:space="preserve"><value>Contenido guardado</value></data>
+  <data name="Logistics_RouteType" xml:space="preserve"><value>Tipo de hoja</value></data>
+  <data name="Logistics_AssignmentType" xml:space="preserve"><value>Modalidad de asignación</value></data>
+  <data name="Logistics_DirectAssignment" xml:space="preserve"><value>Asignación directa</value></data>
+  <data name="Logistics_RouteOffer" xml:space="preserve"><value>Publicar para transportistas</value></data>
+  <data name="Logistics_AssignmentHelp" xml:space="preserve"><value>Directa exige chofer y vehículo. Al publicar, esos campos se ignoran hasta que alguien tome la oferta.</value></data>
+  <data name="Logistics_Driver" xml:space="preserve"><value>Chofer</value></data>
+  <data name="Logistics_Plate" xml:space="preserve"><value>Patente</value></data>
+  <data name="Logistics_NoClients" xml:space="preserve"><value>No hay clientes activos para configurar.</value></data>
+  <data name="Logistics_NoAddresses" xml:space="preserve"><value>Primero registrá un domicilio activo para el cliente.</value></data>
+  <data name="Logistics_SelectRequests" xml:space="preserve"><value>Seleccioná una o más solicitudes pendientes en la grilla.</value></data>
+  <data name="Logistics_SelectRoute" xml:space="preserve"><value>Seleccioná una hoja compatible con la operación.</value></data>
+  <data name="Logistics_SelectOffer" xml:space="preserve"><value>Seleccioná una hoja disponible que todavía no tenga transportista.</value></data>
+  <data name="Logistics_SelectStop" xml:space="preserve"><value>Seleccioná una parada de una hoja despachada.</value></data>
+  <data name="Logistics_InstructionsHelp" xml:space="preserve"><value>Indicá horarios, restricciones de acceso, quién recibe y cualquier condición que deba conocer el chofer.</value></data>
+  <data name="Logistics_AssetHelp" xml:space="preserve"><value>Obligatorio para retiros, devoluciones e intercambios. Identifica el tubo del cliente o de OxiTigre.</value></data>
+  <data name="Logistics_AddressHelp" xml:space="preserve"><value>Información habitual del lugar: contacto, teléfono, horario e instrucciones.</value></data>
+  <data name="Logistics_RequestHelp" xml:space="preserve"><value>Seleccioná varias filas con Ctrl para armar una hoja normal. Urgente admite una sola.</value></data>
+  <data name="Logistics_CustodyHelp" xml:space="preserve"><value>Muestra de quién es cada tubo, su rol y el contenido registrado.</value></data>
+  <data name="Logistics_RouteHelp" xml:space="preserve"><value>Una hoja puede publicarse, asignarse, despacharse o cancelarse; nunca se elimina y cada cambio queda auditado.</value></data>
+  <data name="Logistics_StopHelp" xml:space="preserve"><value>El resultado y la observación son obligatorios para cerrar una parada.</value></data>
+  <data name="Logistics_EventHelp" xml:space="preserve"><value>Auditoría inmutable de cada cambio realizado.</value></data>
+  <data name="Logistics_NotificationHelp" xml:space="preserve"><value>En desarrollo los avisos se simulan; luego un proveedor enviará correo o WhatsApp.</value></data>
+  <data name="Logistics_ServiceMinutes" xml:space="preserve"><value>Minutos de servicio</value></data>
+  <data name="Logistics_Restrictions" xml:space="preserve"><value>Restricciones</value></data>
+  <data name="Logistics_Departure" xml:space="preserve"><value>Salida</value></data>
+  <data name="Logistics_Closed" xml:space="preserve"><value>Cierre</value></data>
+  <data name="Logistics_Order" xml:space="preserve"><value>Orden</value></data>
+  <data name="Logistics_Arrival" xml:space="preserve"><value>Llegada</value></data>
+  <data name="Logistics_Channel" xml:space="preserve"><value>Canal</value></data>
+  <data name="Logistics_Recipient" xml:space="preserve"><value>Destinatario</value></data>
+  <data name="Logistics_Message" xml:space="preserve"><value>Mensaje</value></data>
+  <data name="Logistics_Attempts" xml:space="preserve"><value>Intentos</value></data>
+  <data name="Logistics_Created" xml:space="preserve"><value>Creación</value></data>
+  <data name="Logistics_Sent" xml:space="preserve"><value>Envío</value></data>
+  <data name="Logistics_Transport" xml:space="preserve"><value>Transportistas y vehículos</value></data>
+  <data name="Logistics_Transporters" xml:space="preserve"><value>Transportistas</value></data>
+  <data name="Logistics_Transporter" xml:space="preserve"><value>Transportista</value></data>
+  <data name="Logistics_NewTransporter" xml:space="preserve"><value>Nuevo transportista</value></data>
+  <data name="Logistics_EditTransporter" xml:space="preserve"><value>Editar transportista</value></data>
+  <data name="Logistics_TransporterHelp" xml:space="preserve"><value>Cada transportista se vincula a un usuario activo con rol TRANSPORTISTA. Su licencia y vínculo quedan controlados sin duplicar credenciales.</value></data>
+  <data name="Logistics_SelectTransporter" xml:space="preserve"><value>Seleccioná un transportista.</value></data>
+  <data name="Logistics_NoTransporterUsers" xml:space="preserve"><value>No hay usuarios disponibles. Primero asigná el rol Transportista desde Seguridad · Usuarios.</value></data>
+  <data name="Logistics_User" xml:space="preserve"><value>Usuario de aplicación</value></data>
+  <data name="Logistics_Relationship" xml:space="preserve"><value>Vínculo laboral</value></data>
+  <data name="Logistics_Document" xml:space="preserve"><value>Documento</value></data>
+  <data name="Logistics_License" xml:space="preserve"><value>Licencia de conducir</value></data>
+  <data name="Logistics_LicenseCategory" xml:space="preserve"><value>Categoría de licencia</value></data>
+  <data name="Logistics_LicenseExpiration" xml:space="preserve"><value>Vencimiento de licencia</value></data>
+  <data name="Logistics_Vehicles" xml:space="preserve"><value>Vehículos</value></data>
+  <data name="Logistics_Vehicle" xml:space="preserve"><value>Vehículo</value></data>
+  <data name="Logistics_NewVehicle" xml:space="preserve"><value>Nuevo vehículo</value></data>
+  <data name="Logistics_EditVehicle" xml:space="preserve"><value>Editar vehículo</value></data>
+  <data name="Logistics_VehicleHelp" xml:space="preserve"><value>Registrá si el vehículo es de la empresa o del transportista particular. La hoja guarda además la foto histórica del chofer y la patente.</value></data>
+  <data name="Logistics_SelectVehicle" xml:space="preserve"><value>Seleccioná un vehículo.</value></data>
+  <data name="Logistics_PlateHelp" xml:space="preserve"><value>Admite patente argentina anterior ABC-123 o Mercosur AB-123-CD. Los guiones se agregan automáticamente.</value></data>
+  <data name="Logistics_VehicleType" xml:space="preserve"><value>Tipo de vehículo</value></data>
+  <data name="Logistics_Ownership" xml:space="preserve"><value>Propiedad</value></data>
+  <data name="Logistics_OwnerTransporter" xml:space="preserve"><value>Propietario</value></data>
+  <data name="Logistics_OwnerHelp" xml:space="preserve"><value>Elegí “Vehículo de la empresa” si es propio. Si la propiedad es TRANSPORTISTA, elegí a la persona particular.</value></data>
+  <data name="Logistics_CompanyVehicle" xml:space="preserve"><value>Vehículo de la empresa</value></data>
+  <data name="Logistics_Brand" xml:space="preserve"><value>Marca</value></data>
+  <data name="Logistics_Model" xml:space="preserve"><value>Modelo</value></data>
+  <data name="Logistics_Year" xml:space="preserve"><value>Año</value></data>
+  <data name="Logistics_LoadCapacity" xml:space="preserve"><value>Capacidad de carga (kg)</value></data>
+  <data name="Logistics_InsurancePolicy" xml:space="preserve"><value>Póliza de seguro</value></data>
+  <data name="Logistics_InsuranceExpiration" xml:space="preserve"><value>Vencimiento del seguro</value></data>
+  <data name="Logistics_InspectionExpiration" xml:space="preserve"><value>Vencimiento de revisión técnica</value></data>
+  <data name="Logistics_DateHelp" xml:space="preserve"><value>Usá AAAA-MM-DD o dejá el campo vacío si todavía no está informado.</value></data>
+  <data name="Logistics_RouteNeedsTransport" xml:space="preserve"><value>Antes de crear la hoja registrá al menos un transportista y un vehículo activos.</value></data>
+  <data name="Logistics_RouteStatusGuide" xml:space="preserve"><value>DISPONIBLE: espera transportista · PLANIFICADA: ya asignada · DESPACHADA: en recorrido · COMPLETADA: todas las paradas confirmadas. Nada se elimina.</value></data>
+  <data name="Logistics_Assigned" xml:space="preserve"><value>Asignada</value></data>
+<data name="Purchases_Title" xml:space="preserve"><value>Compras</value></data>
+<data name="Purchases_Overview" xml:space="preserve"><value>Gestioná proveedores, órdenes y recepciones. Solo la cantidad aceptada aumenta el stock; los faltantes quedan pendientes.</value></data>
+<data name="Purchases_Suppliers" xml:space="preserve"><value>Proveedores</value></data>
+<data name="Purchases_Orders" xml:space="preserve"><value>Órdenes de compra</value></data>
+<data name="Purchases_Receipts" xml:space="preserve"><value>Recepciones</value></data>
+<data name="Purchases_NewSupplier" xml:space="preserve"><value>Nuevo proveedor</value></data>
+<data name="Purchases_EditSupplier" xml:space="preserve"><value>Editar proveedor</value></data>
+<data name="Purchases_NewOrder" xml:space="preserve"><value>Nueva orden</value></data>
+<data name="Purchases_Submit" xml:space="preserve"><value>Enviar a aprobación</value></data>
+<data name="Purchases_Approve" xml:space="preserve"><value>Aprobar</value></data>
+<data name="Purchases_Cancel" xml:space="preserve"><value>Cancelar</value></data>
+<data name="Purchases_Receive" xml:space="preserve"><value>Recepcionar</value></data>
+<data name="Purchases_Close" xml:space="preserve"><value>Cerrar saldo</value></data>
+<data name="Purchases_NoSelection" xml:space="preserve"><value>Seleccioná una orden compatible con la operación.</value></data>
+<data name="Purchases_SelectOrder" xml:space="preserve"><value>Seleccioná una orden de compra.</value></data>
+<data name="Purchases_EditDraftOnly" xml:space="preserve"><value>La orden {0} está en estado {1} y ya no puede editarse. Solo se modifican borradores; usá Ver detalle y continuá con la recepción, cierre o cancelación que corresponda.</value></data>
+<data name="Purchases_FilterDrafts" xml:space="preserve"><value>Borradores</value></data>
+<data name="Purchases_FilterInProgress" xml:space="preserve"><value>En curso</value></data>
+<data name="Purchases_FilterFinalized" xml:space="preserve"><value>Finalizadas</value></data>
+<data name="Purchases_OrderEditorHelp" xml:space="preserve"><value>1. Elegí proveedor y depósito. 2. Indicá entrega y observaciones. 3. Agregá cada producto con cantidad, costo, descuento e impuesto. 4. Revisá el total y guardá el borrador.</value></data>
+<data name="Purchases_OrderInformation" xml:space="preserve"><value>Información de la orden</value></data>
+<data name="Purchases_LineEditor" xml:space="preserve"><value>Producto y valores del renglón</value></data>
+<data name="Purchases_LoadedLines" xml:space="preserve"><value>Renglones cargados</value></data>
+<data name="Purchases_AddOrUpdateLine" xml:space="preserve"><value>Agregar / actualizar</value></data>
+<data name="Purchases_InvalidLine" xml:space="preserve"><value>Elegí un producto e ingresá una cantidad mayor que cero.</value></data>
+<data name="Purchases_SelectLine" xml:space="preserve"><value>Seleccioná un renglón para quitarlo.</value></data>
+<data name="Purchases_OrderNeedsLines" xml:space="preserve"><value>La orden debe contener al menos un renglón.</value></data>
+<data name="Purchases_EditorTotal" xml:space="preserve"><value>Total estimado: {0:N2} ARS</value></data>
+<data name="Purchases_Reason" xml:space="preserve"><value>Motivo</value></data>
+<data name="Purchases_LegalName" xml:space="preserve"><value>Razón social</value></data>
+<data name="Purchases_TradeName" xml:space="preserve"><value>Nombre comercial</value></data>
+<data name="Purchases_TaxId" xml:space="preserve"><value>CUIT / identificación fiscal</value></data>
+<data name="Purchases_Contact" xml:space="preserve"><value>Contacto principal</value></data>
+<data name="Purchases_PaymentTerms" xml:space="preserve"><value>Condición de pago</value></data>
+<data name="Purchases_Supplier" xml:space="preserve"><value>Proveedor</value></data>
+<data name="Purchases_Expected" xml:space="preserve"><value>Entrega esperada</value></data>
+<data name="Purchases_AddLine" xml:space="preserve"><value>Agregar renglón</value></data>
+<data name="Purchases_RemoveLine" xml:space="preserve"><value>Quitar renglón</value></data>
+<data name="Purchases_UnitCost" xml:space="preserve"><value>Costo unitario</value></data>
+<data name="Purchases_Document" xml:space="preserve"><value>Número de remito</value></data>
+<data name="Purchases_Accepted" xml:space="preserve"><value>Aceptada</value></data>
+<data name="Purchases_Rejected" xml:space="preserve"><value>Rechazada</value></data>
+<data name="Purchases_Damaged" xml:space="preserve"><value>Dañada</value></data>
+<data name="Traceability_Title" xml:space="preserve"><value>Trazabilidad industrial</value></data>
+<data name="Traceability_Overview" xml:space="preserve"><value>Información almacenada al último movimiento confirmado. Cada cambio conserva usuario, fecha, documento y correlación.</value></data>
+<data name="Traceability_Current" xml:space="preserve"><value>Estado actual e historial</value></data>
+<data name="Traceability_Lots" xml:space="preserve"><value>Lotes</value></data>
+<data name="Traceability_Assets" xml:space="preserve"><value>Activos</value></data>
+<data name="Traceability_Measurements" xml:space="preserve"><value>Mediciones</value></data>
+<data name="Traceability_Transformations" xml:space="preserve"><value>Fraccionamientos</value></data>
+<data name="Traceability_Incidents" xml:space="preserve"><value>Incidentes</value></data>
+<data name="Traceability_Maintenances" xml:space="preserve"><value>Mantenimientos</value></data>
+<data name="Traceability_Loans" xml:space="preserve"><value>Préstamos y envíos</value></data>
+<data name="Traceability_Events" xml:space="preserve"><value>Historial inmutable</value></data>
+<data name="Traceability_NewMeasurement" xml:space="preserve"><value>Registrar medición</value></data>
+<data name="Traceability_NewTransformation" xml:space="preserve"><value>Confirmar fraccionamiento</value></data>
+<data name="Traceability_NewIncident" xml:space="preserve"><value>Registrar incidente</value></data>
+<data name="Traceability_NewMaintenance" xml:space="preserve"><value>Iniciar mantenimiento</value></data>
+<data name="Traceability_CompleteMaintenance" xml:space="preserve"><value>Completar mantenimiento</value></data>
+<data name="Traceability_NewLoan" xml:space="preserve"><value>Registrar préstamo</value></data>
+<data name="Traceability_ReturnLoan" xml:space="preserve"><value>Confirmar devolución</value></data>
+<data name="Traceability_RegisterClientAsset" xml:space="preserve"><value>Registrar tubo del cliente</value></data>
+<data name="Traceability_ClientAssetCustody" xml:space="preserve"><value>Registrar ingreso o entrega</value></data>
+<data name="Traceability_InitialLocation" xml:space="preserve"><value>Ubicación inicial</value></data>
+<data name="Traceability_AtClient" xml:space="preserve"><value>Permanece con el cliente</value></data>
+<data name="Traceability_AtOxiTigre" xml:space="preserve"><value>Recibido en OxiTigre</value></data>
+<data name="Traceability_ReceiveClientAsset" xml:space="preserve"><value>Registrar ingreso del tubo</value></data>
+<data name="Traceability_DeliverClientAsset" xml:space="preserve"><value>Registrar entrega del tubo</value></data>
+<data name="Traceability_SelectClientAsset" xml:space="preserve"><value>Seleccioná un activo que pertenezca a un cliente.</value></data>
+<data name="Traceability_InvalidClientAssetState" xml:space="preserve"><value>El activo no puede ingresar ni entregarse en su estado actual.</value></data>
+<data name="Traceability_InvalidInitialLocation" xml:space="preserve"><value>Elegí un depósito solamente cuando el activo fue recibido en OxiTigre.</value></data>
+<data name="Traceability_SerialHelp" xml:space="preserve"><value>Ingresá la identificación grabada en el tubo. Si no posee, el sistema asignará una identificación interna.</value></data>
+<data name="Traceability_ClientAssetObservationHelp" xml:space="preserve"><value>Indicá cómo se identificó el tubo y cualquier detalle visible al registrarlo.</value></data>
+<data name="Traceability_CustodyObservationHelp" xml:space="preserve"><value>Dejá constancia de quién entrega o recibe, el motivo y el estado visible del tubo.</value></data>
+<data name="Traceability_ClientAssetHelp" xml:space="preserve"><value>Los activos pueden ser propios o del cliente. En cliente significa que no están físicamente en OxiTigre; disponible con depósito significa que están bajo custodia.</value></data>
+<data name="Common_RequiredFields" xml:space="preserve"><value>Completá los campos obligatorios.</value></data>
+<data name="Purchases_EditOrder" xml:space="preserve"><value>Editar orden</value></data>
+<data name="Purchases_InvalidLots" xml:space="preserve"><value>Lotes: usá CODIGO:CANTIDAD separados por punto y coma.</value></data>
+<data name="Purchases_Receipt" xml:space="preserve"><value>Recepción</value></data>
+<data name="Purchases_Ordered" xml:space="preserve"><value>Pedida</value></data>
+<data name="Purchases_Received" xml:space="preserve"><value>Recibida</value></data>
+<data name="Purchases_Pending" xml:space="preserve"><value>Pendiente</value></data>
+<data name="Column_Code" xml:space="preserve"><value>Código</value></data>
+<data name="Column_Date" xml:space="preserve"><value>Fecha</value></data>
+<data name="Column_Total" xml:space="preserve"><value>Total</value></data>
+<data name="Column_ProductCode" xml:space="preserve"><value>Código de producto</value></data>
+<data name="Column_Unit" xml:space="preserve"><value>Unidad</value></data>
+<data name="Column_Serial" xml:space="preserve"><value>Número de serie</value></data>
+<data name="Column_Serials" xml:space="preserve"><value>Series</value></data>
+<data name="Column_Type" xml:space="preserve"><value>Tipo</value></data>
+<data name="Column_Value" xml:space="preserve"><value>Valor</value></data>
+<data name="Column_Method" xml:space="preserve"><value>Método</value></data>
+<data name="Column_Cost" xml:space="preserve"><value>Costo</value></data>
+<data name="Column_Result" xml:space="preserve"><value>Resultado</value></data>
+<data name="Column_Email" xml:space="preserve"><value>Correo</value></data>
+<data name="Column_Phone" xml:space="preserve"><value>Teléfono</value></data>
+<data name="Traceability_LoadedQuantity" xml:space="preserve"><value>Cantidad cargada</value></data>
+<data name="Traceability_Loss" xml:space="preserve"><value>Merma o pérdida</value></data>
+<data name="Traceability_Cause" xml:space="preserve"><value>Causa</value></data>
+<data name="Traceability_Action" xml:space="preserve"><value>Acción tomada</value></data>
+<data name="Traceability_Work" xml:space="preserve"><value>Trabajo realizado</value></data>
+<data name="Traceability_OldComponent" xml:space="preserve"><value>Componente anterior</value></data>
+<data name="Traceability_NewComponent" xml:space="preserve"><value>Componente nuevo</value></data>
+<data name="Traceability_Certificate" xml:space="preserve"><value>Certificado</value></data>
+<data name="Traceability_NextReview" xml:space="preserve"><value>Próxima revisión</value></data>
+<data name="Traceability_Destination" xml:space="preserve"><value>Destino</value></data>
+<data name="Traceability_DeliveryMode" xml:space="preserve"><value>Modalidad de entrega</value></data>
+<data name="Traceability_ExpectedReturn" xml:space="preserve"><value>Devolución prevista</value></data>
+<data name="Traceability_Condition" xml:space="preserve"><value>Condición</value></data>
+<data name="Traceability_OwnerCode" xml:space="preserve"><value>Código de propietario</value></data>
+<data name="Traceability_Owner" xml:space="preserve"><value>Propietario</value></data>
+<data name="Traceability_Capacity" xml:space="preserve"><value>Capacidad</value></data>
+<data name="Traceability_Content" xml:space="preserve"><value>Contenido</value></data>
+<data name="Traceability_ManufactureDate" xml:space="preserve"><value>Fabricación</value></data>
+<data name="Traceability_ExpirationDate" xml:space="preserve"><value>Vencimiento</value></data>
+<data name="Traceability_InitialQuantity" xml:space="preserve"><value>Cantidad inicial</value></data>
+<data name="Traceability_Source" xml:space="preserve"><value>Origen</value></data>
+<data name="Traceability_Estimated" xml:space="preserve"><value>Estimada</value></data>
+<data name="Traceability_Device" xml:space="preserve"><value>Dispositivo</value></data>
+<data name="Traceability_SourceLot" xml:space="preserve"><value>Lote de origen</value></data>
+<data name="Traceability_SourceAsset" xml:space="preserve"><value>Activo de origen</value></data>
+<data name="Traceability_SourceQuantity" xml:space="preserve"><value>Cantidad de origen</value></data>
+<data name="Traceability_DestinationAsset" xml:space="preserve"><value>Activo destino</value></data>
+<data name="Traceability_StartDate" xml:space="preserve"><value>Inicio</value></data>
+<data name="Traceability_EndDate" xml:space="preserve"><value>Fin</value></data>
+<data name="Traceability_DepartureDate" xml:space="preserve"><value>Salida</value></data>
+<data name="Traceability_ActualReturn" xml:space="preserve"><value>Devolución real</value></data>
+<data name="Traceability_DepartureQuantity" xml:space="preserve"><value>Cantidad de salida</value></data>
+<data name="Traceability_DepartureCondition" xml:space="preserve"><value>Condición de salida</value></data>
+<data name="Traceability_ReturnQuantity" xml:space="preserve"><value>Cantidad devuelta</value></data>
+<data name="Traceability_ReturnCondition" xml:space="preserve"><value>Condición de devolución</value></data>
+<data name="Traceability_Event" xml:space="preserve"><value>Evento</value></data>
+<data name="Traceability_PreviousStatus" xml:space="preserve"><value>Estado anterior</value></data>
+<data name="Traceability_NewStatus" xml:space="preserve"><value>Estado posterior</value></data>
+<data name="Traceability_PreviousCondition" xml:space="preserve"><value>Condición anterior</value></data>
+<data name="Traceability_NewCondition" xml:space="preserve"><value>Condición posterior</value></data>
+<data name="Traceability_PreviousQuantity" xml:space="preserve"><value>Cantidad anterior</value></data>
+<data name="Traceability_NewQuantity" xml:space="preserve"><value>Cantidad posterior</value></data>
+<data name="Traceability_Correlation" xml:space="preserve"><value>Correlación</value></data>
+<data name="Traceability_DestinationsFormat" xml:space="preserve"><value>Destinos (CODIGO_ACTIVO:CANTIDAD; ...)</value></data>
+<data name="Traceability_LoanAssetsFormat" xml:space="preserve"><value>Activos (CODIGO_ACTIVO:CANTIDAD; ...)</value></data>
+<data name="Traceability_InvalidDestinations" xml:space="preserve"><value>Revisá los destinos. Usá CODIGO_ACTIVO:CANTIDAD separados por punto y coma.</value></data>
+<data name="Traceability_InvalidLoanAssets" xml:space="preserve"><value>Revisá los activos. Usá CODIGO_ACTIVO:CANTIDAD separados por punto y coma; la cantidad puede ser cero si está vacío.</value></data>
+<data name="Purchases_InvalidContents" xml:space="preserve"><value>Contenido: usá SERIE:CODIGO_PRODUCTO:LOTE:CANTIDAD:METODO separados por punto y coma.</value></data>
+<data name="Purchases_Client" xml:space="preserve"><value>Cliente</value></data>
+<data name="Traceability_DestinationType" xml:space="preserve"><value>Tipo de destino</value></data>
+<data name="Traceability_DestinationBranch" xml:space="preserve"><value>Sucursal</value></data>
+<data name="Traceability_DestinationClient" xml:space="preserve"><value>Cliente</value></data>
+<data name="Traceability_DestinationThirdParty" xml:space="preserve"><value>Tercero</value></data>
+<data name="Traceability_DestinationCompany" xml:space="preserve"><value>Otra empresa</value></data>
+<data name="Traceability_ExternalDestination" xml:space="preserve"><value>Nombre del destino externo</value></data>
+<data name="Traceability_CompanyCode" xml:space="preserve"><value>Código de empresa destino</value></data>
+<data name="Common_Search" xml:space="preserve"><value>Buscar texto o fecha (ej.: 1/8/26)...</value></data>
+<data name="Common_SearchHelp" xml:space="preserve"><value>Elegí una columna o “Todas las columnas”. Podés escribir varias palabras. Para fechas usá día, día/mes o día/mes/año abreviado: 1, 1/8 o 1/8/26.</value></data>
+<data name="Common_Help" xml:space="preserve"><value>Ayuda</value></data>
+<data name="ClientEdit_Help" xml:space="preserve"><value>Elegí primero el tipo de persona y documento. En CUIT/CUIL escribí solo los once números: la aplicación agrega los guiones. Para teléfonos, elegí país y escribí únicamente código de área, número e interno; la vista previa agrega los signos.</value></data>
+<data name="Purchases_SupplierSearchHelp" xml:space="preserve"><value>Buscá proveedores por código, razón social, CUIT, correo, teléfono, condición de pago o estado.</value></data>
+<data name="Purchases_OrderSearchHelp" xml:space="preserve"><value>Buscá órdenes por código, proveedor, depósito, fecha, importe o estado.</value></data>
+<data name="Purchases_ReceiptSearchHelp" xml:space="preserve"><value>Buscá recepciones por código, remito, producto, fecha, motivo o estado.</value></data>
+<data name="Purchases_ChangeSupplierStatus" xml:space="preserve"><value>Cambiar estado</value></data>
+<data name="Purchases_SelectSupplier" xml:space="preserve"><value>Seleccioná un proveedor.</value></data>
+<data name="Purchases_ChangeSupplierStatusQuestion" xml:space="preserve"><value>¿Cambiar el proveedor {0} al estado {1}? Los documentos históricos no se modifican.</value></data>
+<data name="Purchases_ReverseReceipt" xml:space="preserve"><value>Reversar recepción</value></data>
+<data name="Purchases_SelectConfirmedReceipt" xml:space="preserve"><value>Seleccioná una recepción confirmada que todavía no haya sido reversada.</value></data>
+<data name="Purchases_ReverseHelp" xml:space="preserve"><value>La recepción original no se elimina. Se genera una salida compensatoria, se resta lo recibido de la orden y quedan guardados usuario, fecha y motivo. Solo se permite si el stock, lotes y series continúan intactos.</value></data>
+<data name="Purchases_ReverseQuestion" xml:space="preserve"><value>¿Reversar la recepción {0}? Esta acción genera un movimiento compensatorio y no puede deshacerse editando el documento original.</value></data>
+<data name="Purchases_ReceiptHelp" xml:space="preserve"><value>Escribí el remito y las cantidades realmente aceptadas, rechazadas y dañadas. Si existe una diferencia, explicá el motivo. Los lotes, series y contenidos deben cubrir exactamente lo aceptado.</value></data>
+<data name="Purchases_SupplierLot" xml:space="preserve"><value>Lote del proveedor</value></data>
+<data name="Purchases_ReversalReason" xml:space="preserve"><value>Motivo de reversión</value></data>
+<data name="Purchases_ReversedAt" xml:space="preserve"><value>Reversada el</value></data>
+<data name="Purchases_TaxIdHelp" xml:space="preserve"><value>Escribí únicamente los once números del CUIT; la aplicación agrega los guiones y valida el dígito verificador.</value></data>
+<data name="Purchases_PhoneHelp" xml:space="preserve"><value>Registrá un número identificable, preferentemente con código de país y área, por ejemplo +54 11 5555-0101.</value></data>
+<data name="Purchases_PaymentTermsHelp" xml:space="preserve"><value>Indicá cómo se acuerda pagar: contado, transferencia, cuenta corriente y plazo, por ejemplo “Cuenta corriente 30 días”.</value></data>
+<data name="Purchases_ViewOrder" xml:space="preserve"><value>Ver detalle</value></data>
+<data name="Purchases_OrderDetail" xml:space="preserve"><value>Detalle de la orden de compra</value></data>
+<data name="Purchases_OrderNumber" xml:space="preserve"><value>Número de orden</value></data>
+<data name="Purchases_OrderDate" xml:space="preserve"><value>Fecha de emisión</value></data>
+<data name="Purchases_Currency" xml:space="preserve"><value>Moneda</value></data>
+<data name="Purchases_Subtotal" xml:space="preserve"><value>Subtotal</value></data>
+<data name="Purchases_TotalDiscount" xml:space="preserve"><value>Descuento total</value></data>
+<data name="Purchases_TotalTax" xml:space="preserve"><value>Impuestos totales</value></data>
+<data name="Purchases_OrderDetailHelp" xml:space="preserve"><value>La cabecera conserva los datos del proveedor vigentes al generar la orden. Los renglones muestran lo pedido, recibido y pendiente, junto con sus importes.</value></data>
+<data name="Traceability_Help" xml:space="preserve"><value>Cada pestaña muestra información confirmada. No edites el historial: registrá una nueva medición, transformación, incidencia, mantenimiento, préstamo o devolución para conservar la trazabilidad.</value></data>
+<data name="Common_AllColumns" xml:space="preserve"><value>Todas las columnas</value></data>
+<data name="Common_FilterColumn" xml:space="preserve"><value>Columna para filtrar</value></data>
+<data name="Common_ClearFilter" xml:space="preserve"><value>Limpiar filtro</value></data>
+<data name="Clients_Overview" xml:space="preserve"><value>Consultá clientes por estado, buscá por cualquier dato visible y seleccioná una fila para editarla o cambiar su estado.</value></data>
+<data name="Users_Overview" xml:space="preserve"><value>Creá usuarios, asigná roles, reiniciá claves temporales y revocá sesiones. Seleccioná una fila antes de ejecutar una acción.</value></data>
+<data name="UserEdit_Help" xml:space="preserve"><value>Ingresá nombres, apellido y correo. La clave temporal debe tener al menos 10 caracteres, mayúscula, minúscula y número. Asigná al menos un rol.</value></data>
+<data name="Sales_OrderDetails" xml:space="preserve"><value>Renglones del pedido seleccionado</value></data>
+<data name="Purchases_OrderLines" xml:space="preserve"><value>Renglones de la orden seleccionada</value></data>
+<data name="Dashboard_Finance" xml:space="preserve"><value>Finanzas · Caja y cobros</value></data>
+<data name="Finance_Title" xml:space="preserve"><value>Finanzas</value></data>
+<data name="Finance_Overview" xml:space="preserve"><value>Administrá cajas, aperturas, cobros y cuenta corriente. Los recibos son internos y no reemplazan una factura fiscal.</value></data>
+<data name="Finance_Cash" xml:space="preserve"><value>Caja</value></data>
+<data name="Finance_Payments" xml:space="preserve"><value>Cobros</value></data>
+<data name="Finance_Account" xml:space="preserve"><value>Cuenta corriente</value></data>
+<data name="Finance_Methods" xml:space="preserve"><value>Medios de pago</value></data>
+<data name="Finance_NewCashBox" xml:space="preserve"><value>Nueva caja</value></data>
+<data name="Finance_EditCashBox" xml:space="preserve"><value>Editar caja</value></data>
+<data name="Finance_OpenCash" xml:space="preserve"><value>Abrir caja</value></data>
+<data name="Finance_CloseCash" xml:space="preserve"><value>Cerrar caja</value></data>
+<data name="Finance_NewPayment" xml:space="preserve"><value>Nuevo cobro</value></data>
+<data name="Finance_ReversePayment" xml:space="preserve"><value>Reversar cobro</value></data>
+<data name="Finance_NewMethod" xml:space="preserve"><value>Nuevo medio</value></data>
+<data name="Finance_EditMethod" xml:space="preserve"><value>Editar medio</value></data>
+<data name="Finance_Refresh" xml:space="preserve"><value>Actualizar</value></data>
+<data name="Finance_SelectRecord" xml:space="preserve"><value>Seleccioná un registro compatible con la operación.</value></data>
+<data name="Finance_OpeningAmount" xml:space="preserve"><value>Importe inicial</value></data>
+<data name="Finance_CountedAmount" xml:space="preserve"><value>Importe contado</value></data>
+<data name="Finance_Observation" xml:space="preserve"><value>Observación</value></data>
+<data name="Finance_ReversalReason" xml:space="preserve"><value>Motivo obligatorio de reversión</value></data>
+<data name="Finance_PaymentHelp" xml:space="preserve"><value>Elegí cliente, agregá uno o más medios que sumen el total y aplicá hasta ese importe a sus ventas pendientes. El saldo no aplicado queda a favor del cliente.</value></data>
+<data name="Finance_CashHelp" xml:space="preserve"><value>La caja identifica el punto físico. Cada apertura pertenece a un usuario; el cierre compara efectivo esperado y contado sin borrar movimientos.</value></data>
+<data name="Dashboard_Fiscal" xml:space="preserve"><value>Fiscal · Preparación</value></data>
+<data name="Common_Description" xml:space="preserve"><value>Descripción</value></data>
+<data name="Sales_InboundMode" xml:space="preserve"><value>Cómo ingresa el activo</value></data>
+<data name="Sales_ClientDelivers" xml:space="preserve"><value>El cliente lo entrega</value></data>
+<data name="Sales_OxiTigrePickup" xml:space="preserve"><value>OxiTigre lo retira</value></data>
+<data name="Sales_ExpectedReturn" xml:space="preserve"><value>Devolución prevista</value></data>
+<data name="Sales_ExpectedReturnRequired" xml:space="preserve"><value>Ingresá una fecha válida; para un préstamo es obligatoria.</value></data>
+<data name="Logistics_OrderCandidates" xml:space="preserve"><value>Pedidos para planificar</value></data>
+<data name="Logistics_OrderCandidatesHelp" xml:space="preserve"><value>Muestra únicamente retiros y entregas exigidos por pedidos confirmados. El estado de pago se calcula desde Finanzas.</value></data>
+<data name="Logistics_CreateFromOrder" xml:space="preserve"><value>Crear solicitud desde pedido</value></data>
+<data name="Logistics_SelectOrderCandidate" xml:space="preserve"><value>Seleccioná un retiro o una entrega pendiente.</value></data>
+<data name="Logistics_OrderNeedsAddress" xml:space="preserve"><value>El cliente necesita un domicilio logístico activo antes de planificar el pedido.</value></data>
+<data name="Logistics_Operation" xml:space="preserve"><value>Operación</value></data>
+<data name="Logistics_PaymentStatus" xml:space="preserve"><value>Estado del pago</value></data>
+<data name="Logistics_AssetCount" xml:space="preserve"><value>Activos</value></data>
+<data name="Finance_Outstanding" xml:space="preserve"><value>Saldo pendiente</value></data>
+<data name="Logistics_DestinationWarehouse" xml:space="preserve"><value>Depósito que recibe el retiro</value></data>
+<data name="Logistics_PickupNeedsWarehouse" xml:space="preserve"><value>Creá o activá un depósito antes de planificar un retiro.</value></data>
+<data name="Logistics_SelectCompletedAssets" xml:space="preserve"><value>Activos operados en la visita parcial</value></data>
+</root>

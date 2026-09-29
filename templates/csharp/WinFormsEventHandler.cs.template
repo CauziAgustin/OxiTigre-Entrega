@@ -1,0 +1,34 @@
+/*
+===============================================================================
+Proyecto:              Sistema Modular de Gestión OxiTigre
+Componente:            Namespace.FormName
+Archivo:               FormName.cs
+Versión:               1.0.0
+Fecha:                 AAAA-MM-DD
+ID pedido:             FABRICA
+Desarrollador:         Nombre Apellido
+Correo:                correo@empresa.com
+
+Descripción funcional:
+Describe la pantalla y el caso de uso que coordina.
+
+Historial de modificaciones:
+Versión | Fecha      | ID pedido | Desarrollador   | Correo             | Descripción
+1.0.0   | AAAA-MM-DD | FABRICA   | Nombre Apellido | correo@empresa.com | Creación inicial.
+===============================================================================
+*/
+
+/// <summary>
+/// Coordina la interacción de la pantalla sin contener reglas de negocio.
+/// </summary>
+public partial class FormName : Form
+{
+    /// <summary>
+    /// Valida la entrada, solicita la operación al servicio y presenta el resultado.
+    /// </summary>
+    private async void btnGuardar_Click(object sender, EventArgs e)
+    {
+        // La regla funcional debe permanecer en el servicio; el evento solo coordina la UI.
+        await Task.CompletedTask;
+    }
+}

@@ -1,0 +1,134 @@
+@page "/"
+@attribute [Authorize(Roles = "ADMINISTRADOR")]
+@inject OxiTigreApiClient ApiClient
+@inject IHttpContextAccessor HttpContextAccessor
+
+<PageTitle>Panel administrativo · OxiTigre</PageTitle>
+
+<main class="dashboard">
+    <div class="heading">
+        <div><p class="eyebrow">Resumen de operación</p><h1>Panel administrativo</h1></div>
+        <a class="button secondary" href="/">Actualizar</a>
+    </div>
+
+    @if (_loading)
+    {
+        <div class="notice">Cargando información de la empresa…</div>
+    }
+    else if (_error is not null)
+    {
+        <div class="alert" role="alert">@_error</div>
+    }
+    else
+    {
+        <article class="panel platform-overview">
+            <h2>Vista global de empresas</h2>
+            <p>Cada fila se consulta en su propia base; los datos operativos no se mezclan.</p>
+            <div class="table-wrap"><table><thead><tr><th>Empresa</th><th>Versión</th><th>Estado</th><th>Clientes</th><th>Productos</th><th>Stock físico</th><th>Pedidos abiertos</th><th>Ventas</th></tr></thead><tbody>
+                @foreach (var company in _platform?.Companies ?? [])
+                {
+                    <tr><td>@company.CompanyName</td><td>@company.SchemaVersion</td><td><span class="status">@Status(company.Status)</span></td><td>@company.ActiveClients</td><td>@company.Products</td><td>@company.PhysicalStock.ToString("N2")</td><td>@company.OpenOrders</td><td>@company.Sales</td></tr>
+                }
+            </tbody></table></div>
+        </article>
+
+        <section class="metrics" aria-label="Indicadores principales">
+            <article><span>Usuarios</span><strong>@_users.Count</strong></article>
+            <article><span>Clientes activos</span><strong>@_activeClients</strong></article>
+            <article><span>Productos</span><strong>@(_inventory?.Products.Count ?? 0)</strong></article>
+            <article><span>Pedidos</span><strong>@OrderCount</strong></article>
+            <article><span>Ventas internas</span><strong>@SaleCount</strong></article>
+            <article class="warning"><span>Existencias bajo mínimo</span><strong>@LowStockCount</strong></article>
+        </section>
+
+        <section class="panel-grid">
+            <article class="panel">
+                <h2>Inventario</h2>
+                <p>El físico cambia con movimientos; el disponible descuenta las reservas de pedidos confirmados.</p>
+                <div class="table-wrap"><table><thead><tr><th>Producto</th><th>Depósito</th><th>Físico</th><th>Reservado</th><th>Disponible</th></tr></thead><tbody>
+                    @foreach (var row in _inventory?.Stock.OrderBy(item => item.AvailableQuantity).Take(8) ?? [])
+                    {
+                        <tr class="@(row.IsBelowMinimum ? "low" : null)"><td>@row.Product</td><td>@row.Warehouse</td><td>@row.Quantity.ToString("N2")</td><td>@row.ReservedQuantity.ToString("N2")</td><td>@row.AvailableQuantity.ToString("N2")</td></tr>
+                    }
+                </tbody></table></div>
+            </article>
+
+            <article class="panel">
+                <h2>Pedidos recientes</h2>
+                <p>Borrador no reserva; confirmado reserva; vendido descuenta el stock físico.</p>
+                <div class="table-wrap"><table><thead><tr><th>Código</th><th>Cliente</th><th>Estado</th><th>Total</th></tr></thead><tbody>
+                    @foreach (var row in Orders.Take(8))
+                    {
+                        <tr><td>@row.OrderCode</td><td>@row.Client</td><td><span class="status">@Status(row.StatusCode)</span></td><td>@row.Total.ToString("N2") @row.Currency</td></tr>
+                    }
+                </tbody></table></div>
+            </article>
+
+            <article class="panel">
+                <h2>Ventas internas</h2>
+                <p>Son operaciones confirmadas; todavía no equivalen a comprobantes fiscales.</p>
+                <div class="table-wrap"><table><thead><tr><th>Código</th><th>Cliente</th><th>Fecha</th><th>Total</th></tr></thead><tbody>
+                    @foreach (var row in Sales.Take(8))
+                    {
+                        <tr><td>@row.SaleCode</td><td>@row.Client</td><td>@row.SaleDateUtc.ToLocalTime().ToString("g")</td><td>@row.Total.ToString("N2") @row.Currency</td></tr>
+                    }
+                </tbody></table></div>
+            </article>
+
+            <article class="panel">
+                <h2>Usuarios y roles</h2>
+                <p>Vista administrativa de las identidades habilitadas en la empresa.</p>
+                <div class="table-wrap"><table><thead><tr><th>Usuario</th><th>Nombre</th><th>Estado</th><th>Roles</th></tr></thead><tbody>
+                    @foreach (var row in _users.Take(8))
+                    {
+                        <tr><td>@row.Username</td><td>@row.GivenNames @row.Surname</td><td>@Status(row.StatusCode)</td><td>@string.Join(", ", row.Roles)</td></tr>
+                    }
+                </tbody></table></div>
+            </article>
+        </section>
+    }
+</main>
+
+@code {
+    private IReadOnlyList<UserSummaryResponse> _users = [];
+    private PlatformOverviewResponse? _platform;
+    private InventorySnapshotResponse? _inventory;
+    private SalesSnapshotResponse? _sales;
+    private int _activeClients;
+    private bool _loading = true;
+    private string? _error;
+    private IReadOnlyList<OrderLineResponse> Orders => _sales?.Orders.GroupBy(item => item.OrderId).Select(group => group.First()).ToList() ?? [];
+    private IReadOnlyList<SaleLineResponse> Sales => _sales?.Sales.GroupBy(item => item.SaleId).Select(group => group.First()).ToList() ?? [];
+    private int OrderCount => Orders.Count;
+    private int SaleCount => Sales.Count;
+    private int LowStockCount => _inventory?.Stock.Count(item => item.IsBelowMinimum) ?? 0;
+
+    protected override async Task OnInitializedAsync()
+    {
+        var token = HttpContextAccessor.HttpContext?.User.FindFirstValue("oxitigre:token");
+        if (string.IsNullOrWhiteSpace(token)) { _error = "La sesión administrativa no es válida."; _loading = false; return; }
+        try
+        {
+            var usersTask = ApiClient.GetUsersAsync(token);
+            var platformTask = ApiClient.GetPlatformOverviewAsync(token);
+            var clientsTask = ApiClient.GetClientsAsync(token, "ACTIVO");
+            var inventoryTask = ApiClient.GetInventoryAsync(token);
+            var salesTask = ApiClient.GetSalesAsync(token);
+            await Task.WhenAll(usersTask, platformTask, clientsTask, inventoryTask, salesTask);
+            _users = usersTask.Result;
+            _platform = platformTask.Result;
+            _activeClients = clientsTask.Result.Count;
+            _inventory = inventoryTask.Result;
+            _sales = salesTask.Result;
+        }
+        catch (HttpRequestException) { _error = "No se pudo consultar la API. Verificá que esté iniciada y que la sesión continúe vigente."; }
+        finally { _loading = false; }
+    }
+
+    private static string Status(string code) => code switch
+    {
+        "ACTIVO" => "Activo", "INACTIVO" => "Inactivo", "BORRADOR" => "Borrador",
+        "CONFIRMADO" => "Confirmado", "VENDIDO" => "Vendido", "CANCELADO" => "Cancelado",
+        "CONFIRMADA" => "Confirmada", "DISPONIBLE" => "Disponible", "NO_DISPONIBLE" => "No disponible", _ => code
+    };
+}

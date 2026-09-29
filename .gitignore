@@ -1,0 +1,43 @@
+# Visual Studio y .NET
+.vs/
+**/.vs/
+**/bin/
+**/obj/
+**/TestResults/
+**/.test-build/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Paquetes restaurables
+**/packages/
+*.nupkg
+*.snupkg
+
+# Artefactos de base de datos
+*.dacpac
+*.bacpac
+*.publish.xml.user
+*.dbmdl
+
+# Configuración local y secretos
+appsettings.Local.json
+appsettings.*.Local.json
+*.secrets.json
+.env
+.env.*
+!.env.example
+
+# IDE y sistema operativo
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
+
+# Salidas de despliegue
+artifacts/
+.artifacts/
+output/
+coverage/
+/tmp/

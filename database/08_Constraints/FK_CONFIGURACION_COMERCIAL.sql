@@ -1,0 +1,43 @@
+/*
+===============================================================================
+Proyecto:              Sistema Modular de Gestión OxiTigre
+Componente:            Relaciones CONFIGURACION y COMERCIAL
+Archivo:               FK_CONFIGURACION_COMERCIAL.sql
+Versión:               1.1.0
+Fecha:                 2026-08-19
+ID pedido:             FABRICA
+Desarrollador:         Agustin Omar Cauzi
+Correo:                agustincauzi10@hotmail.com
+Descripción funcional: Vincula empresas, sucursales, unidades, clientes y teléfonos.
+Historial de modificaciones:
+1.0.0 | 2026-08-19 | FABRICA | Agustin Omar Cauzi | Creación inicial.
+1.1.0 | 2026-08-20 | FABRICA | Agustin Omar Cauzi | Preferencias de presentación por usuario.
+===============================================================================
+*/
+ALTER TABLE [CONFIGURACION].[SUCURSALES]
+    ADD CONSTRAINT [FK_SUCURSALES_EMPRESAS]
+        FOREIGN KEY ([ID_EMPRESA]) REFERENCES [CONFIGURACION].[EMPRESAS] ([ID_EMPRESA]);
+
+ALTER TABLE [CONFIGURACION].[UNIDADES_OPERATIVAS]
+    ADD CONSTRAINT [FK_UNIDADES_OPERATIVAS_SUCURSALES]
+        FOREIGN KEY ([ID_SUCURSAL]) REFERENCES [CONFIGURACION].[SUCURSALES] ([ID_SUCURSAL]);
+
+ALTER TABLE [CONFIGURACION].[PARAMETROS_SISTEMA]
+    ADD CONSTRAINT [FK_PARAMETROS_SISTEMA_MODULOS]
+        FOREIGN KEY ([ID_MODULO]) REFERENCES [CONFIGURACION].[MODULOS] ([ID_MODULO]);
+
+ALTER TABLE [CONFIGURACION].[USUARIOS_PREFERENCIAS]
+    ADD CONSTRAINT [FK_USUARIOS_PREFERENCIAS_USUARIOS]
+        FOREIGN KEY ([ID_USUARIO]) REFERENCES [SEGURIDAD].[USUARIOS] ([ID_USUARIO]);
+
+ALTER TABLE [COMERCIAL].[CLIENTES]
+    ADD CONSTRAINT [FK_CLIENTES_EMPRESAS]
+        FOREIGN KEY ([ID_EMPRESA]) REFERENCES [CONFIGURACION].[EMPRESAS] ([ID_EMPRESA]);
+
+ALTER TABLE [COMERCIAL].[CLIENTES_TELEFONOS]
+    ADD CONSTRAINT [FK_CLIENTES_TELEFONOS_CLIENTES]
+        FOREIGN KEY ([ID_CLIENTE]) REFERENCES [COMERCIAL].[CLIENTES] ([ID_CLIENTE]);
+
+ALTER TABLE [COMERCIAL].[CLIENTES_TELEFONOS]
+    ADD CONSTRAINT [FK_CLIENTES_TELEFONOS_TIPOS_TELEFONO]
+        FOREIGN KEY ([ID_TIPO_TELEFONO]) REFERENCES [CONFIGURACION].[TIPOS_TELEFONO] ([ID_TIPO_TELEFONO]);

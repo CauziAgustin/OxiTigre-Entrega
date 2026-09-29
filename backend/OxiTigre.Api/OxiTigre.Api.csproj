@@ -1,0 +1,7 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+  <ItemGroup>
+    <ProjectReference Include="..\OxiTigre.BLL\OxiTigre.BLL.csproj" />
+    <ProjectReference Include="..\OxiTigre.DAL\OxiTigre.DAL.csproj" />
+    <ProjectReference Include="..\..\shared\OxiTigre.Contracts\OxiTigre.Contracts.csproj" />
+  </ItemGroup>
+</Project>

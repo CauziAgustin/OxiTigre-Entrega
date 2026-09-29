@@ -1,0 +1,91 @@
+/*
+===============================================================================
+Proyecto:              Sistema Modular de Gestión OxiTigre
+Componente:            SP_ENTIDAD_ACCION
+Archivo:               SP_ENTIDAD_ACCION.sql
+Procedimiento:         SCHEMA.SP_ENTIDAD_ACCION
+Tipo:                  QUERY | COMMAND | AUDIT
+Versión:               1.0.0
+Fecha:                 AAAA-MM-DD
+ID pedido:             FABRICA
+Desarrollador:         Nombre Apellido
+Correo:                correo@empresa.com
+
+Descripción funcional:
+Describe qué resuelve el procedimiento y para qué caso de uso existe.
+
+Parámetros de entrada:
+@I_PARAMETRO TIPO
+    Descripción, formato, unidad y restricciones.
+
+Acciones admitidas mediante @I_ACCION (solo para Commands consolidados):
+- ACCION_EJEMPLO: indicar cuándo se usa y qué resultado funcional produce.
+  Requiere @I_PARAMETRO y los demás parámetros aplicables.
+  Permiso API: MODULO.GESTIONAR.
+
+Parámetros de sesión:
+@S_ID_SESION BIGINT
+    Identificador de la sesión funcional que origina la ejecución.
+
+Parámetros de salida:
+@O_CODIGO_ERROR BIGINT OUTPUT
+    Código funcional; NULL cuando la ejecución finaliza correctamente.
+@O_MENSAJE NVARCHAR(4000) OUTPUT
+    Mensaje funcional o técnico controlado.
+@O_FILAS_AFECTADAS INT OUTPUT
+    Cantidad de filas afectadas por un Command.
+
+Retorno:
+Describe las columnas del result set o indica que no retorna filas.
+
+Tablas utilizadas:
+SCHEMA.TABLA - READ | INSERT | UPDATE | DELETE
+
+Transacción:
+Indica alcance, aislamiento y comportamiento de rollback.
+
+Auditoría:
+Describe la FUNCTIONALITY_KEY y exclusiones del ejecutor centralizado.
+
+Historial de modificaciones:
+Versión | Fecha      | ID pedido | Desarrollador   | Correo             | Descripción
+1.0.0   | AAAA-MM-DD | FABRICA   | Nombre Apellido | correo@empresa.com | Creación inicial.
+===============================================================================
+*/
+CREATE OR ALTER PROCEDURE [SCHEMA].[SP_ENTIDAD_ACCION]
+    @I_PARAMETRO       BIGINT,
+    @S_ID_SESION       BIGINT,
+    @O_CODIGO_ERROR    BIGINT OUTPUT,
+    @O_MENSAJE         NVARCHAR(4000) OUTPUT,
+    @O_FILAS_AFECTADAS INT OUTPUT
+AS
+BEGIN
+    SET NOCOUNT ON;
+    SET XACT_ABORT ON;
+
+    -- INICIO: Inicialización de parámetros de salida.
+    SET @O_CODIGO_ERROR = NULL;
+    SET @O_MENSAJE = NULL;
+    SET @O_FILAS_AFECTADAS = 0;
+    -- FIN: Inicialización de parámetros de salida.
+
+    -- INICIO: Validación de parámetros de entrada.
+    IF @I_PARAMETRO IS NULL
+    BEGIN
+        THROW 50000, 'El parámetro de entrada es obligatorio.', 1;
+    END; -- FIN: Validación de parámetros de entrada.
+
+    BEGIN TRY
+        -- INICIO: Operación funcional principal.
+        -- Implementar la operación con objetos calificados por schema.
+        SET @O_FILAS_AFECTADAS = @@ROWCOUNT;
+        -- FIN: Operación funcional principal.
+    END TRY
+    BEGIN CATCH
+        -- INICIO: Propagación controlada del error.
+        SET @O_CODIGO_ERROR = COALESCE(@O_CODIGO_ERROR, CONVERT(BIGINT, 70002));
+        SET @O_MENSAJE = ERROR_MESSAGE();
+        THROW;
+        -- FIN: Propagación controlada del error.
+    END CATCH;
+END;

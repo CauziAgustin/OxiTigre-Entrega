@@ -1,0 +1,5 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+  <ItemGroup>
+    <ProjectReference Include="..\OxiTigre.ApiClient\OxiTigre.ApiClient.csproj" />
+  </ItemGroup>
+</Project>

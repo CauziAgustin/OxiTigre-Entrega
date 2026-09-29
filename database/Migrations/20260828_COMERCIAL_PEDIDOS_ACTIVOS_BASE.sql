@@ -1,0 +1,71 @@
+/*
+===============================================================================
+Proyecto: Sistema Modular de Gestión OxiTigre
+Componente: Prerrequisito incremental de activos por pedido
+Archivo: 20260828_COMERCIAL_PEDIDOS_ACTIVOS_BASE.sql | Versión: 1.0.0 | Fecha: 2026-08-29 | ID pedido: FABRICA
+Desarrollador: Agustin Omar Cauzi | Correo: agustincauzi10@hotmail.com
+Descripción funcional: Crea el vínculo comercial completo antes de recompilar procedimientos dependientes.
+Precondición: Fases 6 y 7 instaladas.
+Validación posterior: tabla, modalidades, relaciones e índices de PEDIDOS_ACTIVOS disponibles.
+Recuperación: restaurar el respaldo anterior; una tabla nueva sin datos puede retirarse manualmente.
+Historial: 1.0.0 | 2026-08-29 | FABRICA | Agustin Omar Cauzi | Reparación del camino incremental anterior a Logística integrada.
+===============================================================================
+*/
+IF OBJECT_ID(N'COMERCIAL.PEDIDOS_ACTIVOS', N'U') IS NULL
+BEGIN
+    CREATE TABLE [COMERCIAL].[PEDIDOS_ACTIVOS]
+    (
+        [ID_PEDIDO_ACTIVO] BIGINT IDENTITY(1,1) NOT NULL,
+        [ID_PEDIDO] BIGINT NOT NULL,
+        [ID_ACTIVO] BIGINT NOT NULL,
+        [ID_PRODUCTO_RENGLON] BIGINT NOT NULL,
+        [TIPO_VINCULO] NVARCHAR(30) NOT NULL,
+        [MODALIDAD_INGRESO] NVARCHAR(30) NOT NULL
+            CONSTRAINT [DF_PEDIDOS_ACTIVOS_MODALIDAD_INGRESO] DEFAULT (N'NO_APLICA'),
+        [MODALIDAD_RETORNO] NVARCHAR(30) NOT NULL,
+        [FECHA_DEVOLUCION_PREVISTA] DATE NULL,
+        [OBSERVACION] NVARCHAR(500) NOT NULL,
+        [CODIGO_ESTADO] NVARCHAR(30) NOT NULL
+            CONSTRAINT [DF_PEDIDOS_ACTIVOS_ESTADO] DEFAULT (N'ACTIVO'),
+        [FECHA_ALTA_UTC] DATETIME2(3) NOT NULL
+            CONSTRAINT [DF_PEDIDOS_ACTIVOS_FECHA_ALTA] DEFAULT (SYSUTCDATETIME()),
+        [ID_USUARIO_ALTA] BIGINT NOT NULL,
+        [FECHA_MODIFICACION_UTC] DATETIME2(3) NULL,
+        [ID_USUARIO_MODIFICACION] BIGINT NULL,
+        [ROW_VERSION] ROWVERSION NOT NULL,
+        CONSTRAINT [PK_PEDIDOS_ACTIVOS] PRIMARY KEY CLUSTERED ([ID_PEDIDO_ACTIVO]),
+        CONSTRAINT [FK_PEDIDOS_ACTIVOS_PEDIDOS]
+            FOREIGN KEY ([ID_PEDIDO]) REFERENCES [COMERCIAL].[PEDIDOS] ([ID_PEDIDO]),
+        CONSTRAINT [FK_PEDIDOS_ACTIVOS_ACTIVOS]
+            FOREIGN KEY ([ID_ACTIVO]) REFERENCES [INVENTARIO].[ACTIVOS] ([ID_ACTIVO]),
+        CONSTRAINT [FK_PEDIDOS_ACTIVOS_PRODUCTOS]
+            FOREIGN KEY ([ID_PRODUCTO_RENGLON]) REFERENCES [INVENTARIO].[PRODUCTOS] ([ID_PRODUCTO]),
+        CONSTRAINT [CK_PEDIDOS_ACTIVOS_INGRESO]
+            CHECK ([MODALIDAD_INGRESO] IN (N'ENTREGA_CLIENTE', N'RETIRO_OXITIGRE', N'NO_APLICA')),
+        CONSTRAINT [CK_PEDIDOS_ACTIVOS_RETORNO]
+            CHECK ([MODALIDAD_RETORNO] IN (N'RETIRO_CLIENTE', N'ENTREGA_OXITIGRE', N'NO_APLICA')),
+        CONSTRAINT [CK_PEDIDOS_ACTIVOS_VALORES]
+            CHECK
+            (
+                [TIPO_VINCULO] IN (N'CLIENTE_SERVICIO', N'VENTA_ACTIVO', N'PRESTAMO', N'INTERCAMBIO')
+                AND NULLIF(LTRIM(RTRIM([OBSERVACION])), N'') IS NOT NULL
+                AND [CODIGO_ESTADO] IN (N'ACTIVO', N'INACTIVO')
+            )
+    );
+
+    CREATE UNIQUE INDEX [UX_PEDIDOS_ACTIVOS_ACTIVOS]
+        ON [COMERCIAL].[PEDIDOS_ACTIVOS]
+        ([ID_PEDIDO], [ID_ACTIVO], [ID_PRODUCTO_RENGLON], [TIPO_VINCULO])
+        WHERE [CODIGO_ESTADO] = N'ACTIVO';
+
+    CREATE INDEX [IX_PEDIDOS_ACTIVOS_ACTIVO]
+        ON [COMERCIAL].[PEDIDOS_ACTIVOS] ([ID_ACTIVO], [CODIGO_ESTADO])
+        INCLUDE ([ID_PEDIDO], [TIPO_VINCULO]);
+END;
+
+IF COL_LENGTH(N'COMERCIAL.PEDIDOS_ACTIVOS', N'MODALIDAD_INGRESO') IS NULL
+   OR COL_LENGTH(N'COMERCIAL.PEDIDOS_ACTIVOS', N'FECHA_DEVOLUCION_PREVISTA') IS NULL
+   OR OBJECT_ID(N'COMERCIAL.FK_PEDIDOS_ACTIVOS_PEDIDOS', N'F') IS NULL
+BEGIN
+    THROW 50000, 'No se instaló el prerrequisito de activos por pedido.', 1;
+END;

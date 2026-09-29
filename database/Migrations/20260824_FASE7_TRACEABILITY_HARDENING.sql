@@ -1,0 +1,16 @@
+/*
+===============================================================================
+Proyecto: Sistema Modular de Gestión OxiTigre
+Componente: Migración de endurecimiento de trazabilidad Fase 7
+Archivo: 20260824_FASE7_TRACEABILITY_HARDENING.sql | Versión: 1.0.0 | Fecha: 2026-08-24 | ID pedido: FABRICA
+Desarrollador: Agustin Omar Cauzi | Correo: agustincauzi10@hotmail.com
+Descripción funcional: Impide más de un contenido activo por envase y destinos de préstamo ambiguos.
+Historial: 1.0.0 | 2026-08-24 | FABRICA | Agustin Omar Cauzi | Creación inicial.
+===============================================================================
+*/
+IF EXISTS (SELECT 1 FROM sys.indexes WHERE [object_id]=OBJECT_ID(N'INVENTARIO.ACTIVOS_CONTENIDOS') AND [name]=N'UX_ACTIVOS_CONTENIDOS_PRODUCTO')
+    DROP INDEX [UX_ACTIVOS_CONTENIDOS_PRODUCTO] ON [INVENTARIO].[ACTIVOS_CONTENIDOS];
+IF NOT EXISTS (SELECT 1 FROM sys.indexes WHERE [object_id]=OBJECT_ID(N'INVENTARIO.ACTIVOS_CONTENIDOS') AND [name]=N'UX_ACTIVOS_CONTENIDO_ACTIVO')
+    CREATE UNIQUE INDEX [UX_ACTIVOS_CONTENIDO_ACTIVO] ON [INVENTARIO].[ACTIVOS_CONTENIDOS] ([ID_ACTIVO]) WHERE [CODIGO_ESTADO]=N'ACTIVO';
+IF OBJECT_ID(N'INVENTARIO.CK_PRESTAMOS_DESTINO',N'C') IS NULL
+    ALTER TABLE [INVENTARIO].[PRESTAMOS] ADD CONSTRAINT [CK_PRESTAMOS_DESTINO] CHECK (([TIPO_DESTINO] = N'SUCURSAL' AND [ID_SUCURSAL_DESTINO] IS NOT NULL AND [ID_CLIENTE_DESTINO] IS NULL AND [DESTINO_EXTERNO] IS NULL) OR ([TIPO_DESTINO] = N'CLIENTE' AND [ID_CLIENTE_DESTINO] IS NOT NULL AND [ID_SUCURSAL_DESTINO] IS NULL AND [DESTINO_EXTERNO] IS NULL) OR ([TIPO_DESTINO] IN (N'TERCERO', N'INTEREMPRESA') AND [DESTINO_EXTERNO] IS NOT NULL AND [ID_SUCURSAL_DESTINO] IS NULL AND [ID_CLIENTE_DESTINO] IS NULL));

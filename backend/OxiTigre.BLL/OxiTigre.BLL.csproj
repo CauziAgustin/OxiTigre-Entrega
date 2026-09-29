@@ -1,0 +1,5 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <ItemGroup>
+    <ProjectReference Include="..\OxiTigre.Domain\OxiTigre.Domain.csproj" />
+  </ItemGroup>
+</Project>

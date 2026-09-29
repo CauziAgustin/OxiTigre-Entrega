@@ -1,0 +1,105 @@
+/*
+===============================================================================
+Proyecto: Sistema Modular de Gestión OxiTigre
+Componente: SP_PARAMETRO_SISTEMA_SAVE
+Procedimiento: CONFIGURACION.SP_PARAMETRO_SISTEMA_SAVE
+Tipo:                  COMMAND
+Archivo: SP_PARAMETRO_SISTEMA_SAVE.sql | Versión: 1.0.1 | Fecha: 2026-09-20 | ID pedido: FABRICA
+Desarrollador: Agustin Omar Cauzi | Correo: agustincauzi10@hotmail.com
+Descripción funcional: Crea o mantiene parámetros tipados sin almacenar secretos en texto plano.
+Parámetros de entrada: Identificador opcional, módulo, clave, valor o referencia, tipo, estado y versión.
+Parámetros de sesión: Usuario responsable.
+Parámetros de salida: Identificador, código, mensaje y filas afectadas.
+Retorno: No retorna filas.
+Tablas utilizadas: CONFIGURACION.PARAMETROS_SISTEMA - INSERT/UPDATE.
+Transacción: Escritura atómica con concurrencia optimista.
+Auditoría: La DAL registra metadatos sin valores ni referencias.
+Historial: 1.0.0 | 2026-08-20 | FABRICA | Agustin Omar Cauzi | Creación inicial.
+Historial: 1.0.1 | 2026-09-20 | FABRICA | Agustin Omar Cauzi | Documentación técnica completa del procedimiento.
+===============================================================================
+*/
+CREATE OR ALTER PROCEDURE [CONFIGURACION].[SP_PARAMETRO_SISTEMA_SAVE]
+    @I_ID_PARAMETRO_SISTEMA BIGINT = NULL,
+    @I_ID_MODULO BIGINT = NULL,
+    @I_CLAVE NVARCHAR(100),
+    @I_VALOR NVARCHAR(2000) = NULL,
+    @I_TIPO_DATO NVARCHAR(30),
+    @I_ES_SECRETO BIT,
+    @I_REFERENCIA_SECRETO NVARCHAR(250) = NULL,
+    @I_DESCRIPCION NVARCHAR(500) = NULL,
+    @I_CODIGO_ESTADO NVARCHAR(30),
+    @I_ROW_VERSION BINARY(8) = NULL,
+    @S_ID_USUARIO BIGINT,
+    @O_ID_PARAMETRO_SISTEMA BIGINT OUTPUT,
+    @O_CODIGO_ERROR BIGINT OUTPUT,
+    @O_MENSAJE NVARCHAR(4000) OUTPUT,
+    @O_FILAS_AFECTADAS INT OUTPUT
+AS
+BEGIN
+    SET NOCOUNT ON; SET XACT_ABORT ON;
+    SET @O_ID_PARAMETRO_SISTEMA = @I_ID_PARAMETRO_SISTEMA; SET @O_CODIGO_ERROR = NULL; SET @O_MENSAJE = NULL; SET @O_FILAS_AFECTADAS = 0;
+    SET @I_TIPO_DATO = UPPER(LTRIM(RTRIM(@I_TIPO_DATO)));
+
+    IF NULLIF(LTRIM(RTRIM(@I_CLAVE)), N'') IS NULL OR @I_TIPO_DATO NOT IN (N'TEXTO', N'ENTERO', N'DECIMAL', N'BOOLEANO', N'FECHA')
+       OR @I_CODIGO_ESTADO NOT IN (N'ACTIVO', N'INACTIVO') OR (@I_ID_PARAMETRO_SISTEMA IS NOT NULL AND @I_ROW_VERSION IS NULL)
+       OR (@I_ID_MODULO IS NOT NULL AND NOT EXISTS (SELECT 1 FROM [CONFIGURACION].[MODULOS] WHERE [ID_MODULO] = @I_ID_MODULO))
+       OR (@I_ES_SECRETO = 1 AND NULLIF(LTRIM(RTRIM(@I_REFERENCIA_SECRETO)), N'') IS NULL AND @I_ID_PARAMETRO_SISTEMA IS NULL)
+       OR (@I_ES_SECRETO = 1 AND NULLIF(LTRIM(RTRIM(@I_VALOR)), N'') IS NOT NULL)
+       OR (@I_ES_SECRETO = 0 AND NULLIF(LTRIM(RTRIM(@I_REFERENCIA_SECRETO)), N'') IS NOT NULL)
+    BEGIN
+        SET @O_CODIGO_ERROR = 20001;
+        EXEC [AUDITORIA].[SP_ERROR_MESSAGE_RESOLVE] @I_CODIGO_ERROR = @O_CODIGO_ERROR,
+            @I_MENSAJE_PERSONALIZADO = N'El parámetro, su tipo, estado, valor o referencia secreta no son válidos.', @O_MENSAJE = @O_MENSAJE OUTPUT;
+        RETURN;
+    END;
+
+    IF @I_ES_SECRETO = 0 AND
+    (
+        (@I_TIPO_DATO = N'ENTERO' AND TRY_CONVERT(BIGINT, @I_VALOR) IS NULL) OR
+        (@I_TIPO_DATO = N'DECIMAL' AND TRY_CONVERT(DECIMAL(38,10), @I_VALOR) IS NULL) OR
+        (@I_TIPO_DATO = N'BOOLEANO' AND UPPER(COALESCE(@I_VALOR, N'')) NOT IN (N'TRUE', N'FALSE', N'1', N'0')) OR
+        (@I_TIPO_DATO = N'FECHA' AND TRY_CONVERT(DATE, @I_VALOR, 23) IS NULL)
+    )
+    BEGIN
+        SET @O_CODIGO_ERROR = 20001;
+        EXEC [AUDITORIA].[SP_ERROR_MESSAGE_RESOLVE] @I_CODIGO_ERROR = @O_CODIGO_ERROR,
+            @I_MENSAJE_PERSONALIZADO = N'El valor no coincide con el tipo de dato seleccionado.', @O_MENSAJE = @O_MENSAJE OUTPUT;
+        RETURN;
+    END;
+
+    BEGIN TRY
+        IF @I_ID_PARAMETRO_SISTEMA IS NULL
+        BEGIN
+            INSERT INTO [CONFIGURACION].[PARAMETROS_SISTEMA]
+                ([ID_MODULO], [CLAVE], [VALOR], [TIPO_DATO], [ES_SECRETO], [REFERENCIA_SECRETO], [DESCRIPCION], [CODIGO_ESTADO], [ID_USUARIO_ALTA])
+            VALUES (@I_ID_MODULO, UPPER(LTRIM(RTRIM(@I_CLAVE))), CASE WHEN @I_ES_SECRETO = 1 THEN NULL ELSE NULLIF(LTRIM(RTRIM(@I_VALOR)), N'') END,
+                    @I_TIPO_DATO, @I_ES_SECRETO, CASE WHEN @I_ES_SECRETO = 1 THEN NULLIF(LTRIM(RTRIM(@I_REFERENCIA_SECRETO)), N'') ELSE NULL END,
+                    NULLIF(LTRIM(RTRIM(@I_DESCRIPCION)), N''), @I_CODIGO_ESTADO, @S_ID_USUARIO);
+            SET @O_FILAS_AFECTADAS = @@ROWCOUNT; SET @O_ID_PARAMETRO_SISTEMA = SCOPE_IDENTITY();
+        END
+        ELSE
+        BEGIN
+            UPDATE [CONFIGURACION].[PARAMETROS_SISTEMA]
+            SET [ID_MODULO] = @I_ID_MODULO, [VALOR] = CASE WHEN @I_ES_SECRETO = 1 THEN NULL ELSE NULLIF(LTRIM(RTRIM(@I_VALOR)), N'') END,
+                [TIPO_DATO] = @I_TIPO_DATO, [ES_SECRETO] = @I_ES_SECRETO,
+                [REFERENCIA_SECRETO] = CASE WHEN @I_ES_SECRETO = 0 THEN NULL ELSE COALESCE(NULLIF(LTRIM(RTRIM(@I_REFERENCIA_SECRETO)), N''), [REFERENCIA_SECRETO]) END,
+                [DESCRIPCION] = NULLIF(LTRIM(RTRIM(@I_DESCRIPCION)), N''), [CODIGO_ESTADO] = @I_CODIGO_ESTADO,
+                [FECHA_MODIFICACION_UTC] = SYSUTCDATETIME(), [ID_USUARIO_MODIFICACION] = @S_ID_USUARIO
+            WHERE [ID_PARAMETRO_SISTEMA] = @I_ID_PARAMETRO_SISTEMA AND [ROW_VERSION] = @I_ROW_VERSION;
+            SET @O_FILAS_AFECTADAS = @@ROWCOUNT;
+            IF @O_FILAS_AFECTADAS = 0
+            BEGIN
+                SET @O_CODIGO_ERROR = CASE WHEN EXISTS (SELECT 1 FROM [CONFIGURACION].[PARAMETROS_SISTEMA] WHERE [ID_PARAMETRO_SISTEMA] = @I_ID_PARAMETRO_SISTEMA) THEN 20003 ELSE 20002 END;
+                EXEC [AUDITORIA].[SP_ERROR_MESSAGE_RESOLVE] @I_CODIGO_ERROR = @O_CODIGO_ERROR,
+                    @I_MENSAJE_PERSONALIZADO = NULL, @O_MENSAJE = @O_MENSAJE OUTPUT;
+            END;
+        END;
+    END TRY
+    BEGIN CATCH
+        IF ERROR_NUMBER() IN (2601, 2627)
+        BEGIN
+            SET @O_CODIGO_ERROR = 20001; SET @O_MENSAJE = N'Ya existe un parámetro con esa clave para el módulo seleccionado.'; RETURN;
+        END;
+        SET @O_CODIGO_ERROR = 70002; SET @O_MENSAJE = ERROR_MESSAGE(); THROW;
+    END CATCH;
+END;

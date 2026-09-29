@@ -1,0 +1,41 @@
+name: CI Entrega Desktop
+
+on:
+  pull_request:
+    branches: [entrega-profesor]
+  push:
+    branches: [entrega-profesor]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  desktop-delivery:
+    name: desktop-delivery
+    runs-on: windows-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - name: Configurar .NET
+        uses: actions/setup-dotnet@a98b56852c35b8e3190ac28c8c2271da59106c68 # v6.0.0
+        with:
+          dotnet-version: 10.0.x
+      - name: Validar entrega Desktop, API y SQL
+        shell: pwsh
+        run: ./scripts/ci/Test-DesktopDelivery.ps1
+      - name: Confirmar instalador SQL versionado
+        shell: pwsh
+        run: |
+          $required = @(
+            'scripts/database/Deploy-Database.ps1',
+            'scripts/database/Deploy-PlatformDatabase.ps1',
+            'scripts/database/Test-DatabaseDeployment.ps1'
+          )
+          foreach ($file in $required) {
+            if (-not (Test-Path -LiteralPath $file)) { throw "Falta $file." }
+          }

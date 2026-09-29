@@ -1,0 +1,12 @@
+{
+    "schemaVersion": 1,
+    "culture": "pt-BR",
+    "displayName": "Português (Brasil)",
+    "translations": {
+        "Common_Save": "Salvar",
+        "Common_Cancel": "Cancelar",
+        "Common_Refresh": "Atualizar",
+        "Dashboard_Home": "Início",
+        "Config_Language": "Idioma"
+    }
+}

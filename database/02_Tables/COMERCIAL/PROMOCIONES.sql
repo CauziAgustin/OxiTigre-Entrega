@@ -1,0 +1,34 @@
+/*
+===============================================================================
+Proyecto: Sistema Modular de Gestión OxiTigre
+Componente: COMERCIAL.PROMOCIONES
+Archivo: PROMOCIONES.sql | Versión: 1.0.0 | Fecha: 2026-08-21 | ID pedido: FABRICA
+Desarrollador: Agustin Omar Cauzi | Correo: agustincauzi10@hotmail.com
+Descripción funcional: Define promociones vigentes por empresa y producto sin eliminar su historial.
+Historial: 1.0.0 | 2026-08-21 | FABRICA | Agustin Omar Cauzi | Creación inicial para Fase 6.
+===============================================================================
+*/
+CREATE TABLE [COMERCIAL].[PROMOCIONES]
+(
+    [ID_PROMOCION] BIGINT IDENTITY(1,1) NOT NULL,
+    [ID_EMPRESA] BIGINT NOT NULL,
+    [ID_PRODUCTO] BIGINT NOT NULL,
+    [CODIGO] NVARCHAR(30) NOT NULL,
+    [NOMBRE] NVARCHAR(150) NOT NULL,
+    [DESCRIPCION] NVARCHAR(500) NULL,
+    [TIPO_PROMOCION] NVARCHAR(30) NOT NULL,
+    [CANTIDAD_REQUERIDA] DECIMAL(19,4) NOT NULL,
+    [CANTIDAD_PAGADA] DECIMAL(19,4) NULL,
+    [CANTIDAD_BONIFICADA] DECIMAL(19,4) NULL,
+    [PORCENTAJE_DESCUENTO] DECIMAL(9,6) NULL,
+    [PRECIO_PAQUETE] DECIMAL(19,4) NULL,
+    [FECHA_VIGENCIA_DESDE] DATE NULL,
+    [FECHA_VIGENCIA_HASTA] DATE NULL,
+    [CODIGO_ESTADO] NVARCHAR(30) NOT NULL CONSTRAINT [DF_PROMOCIONES_CODIGO_ESTADO] DEFAULT (N'ACTIVO'),
+    [FECHA_ALTA_UTC] DATETIME2(3) NOT NULL CONSTRAINT [DF_PROMOCIONES_FECHA_ALTA_UTC] DEFAULT (SYSUTCDATETIME()),
+    [ID_USUARIO_ALTA] BIGINT NOT NULL,
+    [FECHA_MODIFICACION_UTC] DATETIME2(3) NULL,
+    [ID_USUARIO_MODIFICACION] BIGINT NULL,
+    [ROW_VERSION] ROWVERSION NOT NULL,
+    CONSTRAINT [PK_PROMOCIONES] PRIMARY KEY CLUSTERED ([ID_PROMOCION])
+);

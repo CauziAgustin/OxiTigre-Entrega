@@ -1,0 +1,35 @@
+/*
+===============================================================================
+Proyecto: Sistema Modular de Gestión OxiTigre
+Componente: COMERCIAL.PEDIDOS_ACTIVOS
+Archivo: PEDIDOS_ACTIVOS.sql | Versión: 1.1.0 | Fecha: 2026-08-28 | ID pedido: FABRICA
+Desarrollador: Agustin Omar Cauzi | Correo: agustincauzi10@hotmail.com
+Descripción funcional: Vincula cada tubo o activo concreto con el renglón cobrable y su modalidad operativa.
+Historial: 1.0.0 | 2026-08-28 | FABRICA | Agustin Omar Cauzi | Creación inicial.
+Historial: 1.1.0 | 2026-08-28 | FABRICA | Agustin Omar Cauzi | Modalidades de ingreso y regreso, y devolución prevista.
+===============================================================================
+*/
+CREATE TABLE [COMERCIAL].[PEDIDOS_ACTIVOS]
+(
+    [ID_PEDIDO_ACTIVO] BIGINT IDENTITY(1,1) NOT NULL,
+    [ID_PEDIDO] BIGINT NOT NULL,
+    [ID_ACTIVO] BIGINT NOT NULL,
+    [ID_PRODUCTO_RENGLON] BIGINT NOT NULL,
+    [TIPO_VINCULO] NVARCHAR(30) NOT NULL,
+    [MODALIDAD_INGRESO] NVARCHAR(30) NOT NULL
+        CONSTRAINT [DF_PEDIDOS_ACTIVOS_MODALIDAD_INGRESO] DEFAULT (N'NO_APLICA'),
+    [MODALIDAD_RETORNO] NVARCHAR(30) NOT NULL,
+    [FECHA_DEVOLUCION_PREVISTA] DATE NULL,
+    [OBSERVACION] NVARCHAR(500) NOT NULL,
+    [CODIGO_ESTADO] NVARCHAR(30) NOT NULL CONSTRAINT [DF_PEDIDOS_ACTIVOS_ESTADO] DEFAULT (N'ACTIVO'),
+    [FECHA_ALTA_UTC] DATETIME2(3) NOT NULL CONSTRAINT [DF_PEDIDOS_ACTIVOS_FECHA_ALTA] DEFAULT (SYSUTCDATETIME()),
+    [ID_USUARIO_ALTA] BIGINT NOT NULL,
+    [FECHA_MODIFICACION_UTC] DATETIME2(3) NULL,
+    [ID_USUARIO_MODIFICACION] BIGINT NULL,
+    [ROW_VERSION] ROWVERSION NOT NULL,
+    CONSTRAINT [PK_PEDIDOS_ACTIVOS] PRIMARY KEY CLUSTERED ([ID_PEDIDO_ACTIVO]),
+    CONSTRAINT [CK_PEDIDOS_ACTIVOS_INGRESO]
+        CHECK ([MODALIDAD_INGRESO] IN (N'ENTREGA_CLIENTE', N'RETIRO_OXITIGRE', N'NO_APLICA')),
+    CONSTRAINT [CK_PEDIDOS_ACTIVOS_RETORNO]
+        CHECK ([MODALIDAD_RETORNO] IN (N'RETIRO_CLIENTE', N'ENTREGA_OXITIGRE', N'NO_APLICA'))
+);

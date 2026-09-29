@@ -1,0 +1,28 @@
+/*
+===============================================================================
+Proyecto: Sistema Modular de Gestión OxiTigre
+Componente: INVENTARIO.MOVIMIENTOS_DETALLES
+Archivo: MOVIMIENTOS_DETALLES.sql | Versión: 1.0.0 | Fecha: 2026-08-20 | ID pedido: FABRICA
+Desarrollador: Agustin Omar Cauzi | Correo: agustincauzi10@hotmail.com
+Descripción funcional: Traza producto, cantidad y origen/destino de cada movimiento confirmado.
+Historial: 1.0.0 | 2026-08-20 | FABRICA | Agustin Omar Cauzi | Creación inicial.
+===============================================================================
+*/
+CREATE TABLE [INVENTARIO].[MOVIMIENTOS_DETALLES]
+(
+    [ID_MOVIMIENTO_DETALLE] BIGINT IDENTITY(1,1) NOT NULL,
+    [ID_MOVIMIENTO] BIGINT NOT NULL,
+    [ID_PRODUCTO] BIGINT NOT NULL,
+    [ID_DEPOSITO_ORIGEN] BIGINT NULL,
+    [ID_UBICACION_ORIGEN] BIGINT NULL,
+    [ID_DEPOSITO_DESTINO] BIGINT NULL,
+    [ID_UBICACION_DESTINO] BIGINT NULL,
+    [CANTIDAD] DECIMAL(19,4) NOT NULL,
+    [CODIGO_ESTADO] NVARCHAR(30) NOT NULL CONSTRAINT [DF_MOVIMIENTOS_DETALLES_CODIGO_ESTADO] DEFAULT (N'ACTIVO'),
+    [FECHA_ALTA_UTC] DATETIME2(3) NOT NULL CONSTRAINT [DF_MOVIMIENTOS_DETALLES_FECHA_ALTA_UTC] DEFAULT (SYSUTCDATETIME()),
+    [ID_USUARIO_ALTA] BIGINT NOT NULL,
+    [FECHA_MODIFICACION_UTC] DATETIME2(3) NULL,
+    [ID_USUARIO_MODIFICACION] BIGINT NULL,
+    [ROW_VERSION] ROWVERSION NOT NULL,
+    CONSTRAINT [PK_MOVIMIENTOS_DETALLES] PRIMARY KEY CLUSTERED ([ID_MOVIMIENTO_DETALLE])
+);

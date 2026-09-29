@@ -1,0 +1,18 @@
+@inherits LayoutComponentBase
+
+<header class="topbar">
+    <a class="brand" href="/">OxiTigre <span>Administración</span></a>
+    <AuthorizeView Roles="ADMINISTRADOR">
+        <Authorized Context="session">
+            <div class="session">
+                <span>@session.User.Identity?.Name · @session.User.FindFirst("oxitigre:company")?.Value</span>
+                <form method="post" action="/auth/logout">
+                    <AntiforgeryToken />
+                    <button class="logout" type="submit">Cerrar sesión</button>
+                </form>
+            </div>
+        </Authorized>
+    </AuthorizeView>
+</header>
+
+@Body

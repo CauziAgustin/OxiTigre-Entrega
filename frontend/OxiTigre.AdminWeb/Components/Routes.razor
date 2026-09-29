@@ -1,0 +1,19 @@
+<Router AppAssembly="typeof(Program).Assembly">
+    <Found Context="routeData">
+        <AuthorizeRouteView RouteData="routeData" DefaultLayout="typeof(MainLayout)">
+            <NotAuthorized>
+                <main class="center-card">
+                    <h1>Acceso restringido</h1>
+                    <p>Iniciá sesión con un usuario administrador para continuar.</p>
+                    <a class="button" href="/login">Ir al acceso</a>
+                </main>
+            </NotAuthorized>
+        </AuthorizeRouteView>
+        <FocusOnNavigate RouteData="routeData" Selector="h1" />
+    </Found>
+    <NotFound>
+        <LayoutView Layout="typeof(MainLayout)">
+            <main class="center-card"><h1>Página inexistente</h1><a href="/">Volver al panel</a></main>
+        </LayoutView>
+    </NotFound>
+</Router>

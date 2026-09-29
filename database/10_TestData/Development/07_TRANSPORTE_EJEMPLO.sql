@@ -1,0 +1,164 @@
+/*
+===============================================================================
+Proyecto: Sistema Modular de Gestión OxiTigre
+Componente: Datos de transporte para Desarrollo
+Archivo: 07_TRANSPORTE_EJEMPLO.sql | Versión: 1.1.0 | Fecha: 2026-08-27 | ID pedido: FABRICA
+Desarrollador: Agustin Omar Cauzi | Correo: agustincauzi10@hotmail.com
+Descripción funcional: Habilita un transportista y un vehículo para pruebas locales.
+Historial: 1.0.0 | 2026-08-27 | FABRICA | Agustin Omar Cauzi | Creación inicial idempotente.
+Historial: 1.1.0 | 2026-08-27 | FABRICA | Asignación real y recorrido completado para prueba visual.
+===============================================================================
+*/
+DECLARE @V_ID_EMPRESA BIGINT = (SELECT [ID_EMPRESA] FROM [CONFIGURACION].[EMPRESAS] WHERE [CODIGO] = N'OXITIGRE');
+DECLARE @V_ID_USUARIO BIGINT = (SELECT [ID_USUARIO] FROM [SEGURIDAD].[USUARIOS]
+                                WHERE [ID_EMPRESA] = @V_ID_EMPRESA AND [NOMBRE_USUARIO] = N'AOCAUZI');
+DECLARE @V_ID_ROL BIGINT = (SELECT [ID_ROL] FROM [SEGURIDAD].[ROLES]
+                            WHERE [ID_EMPRESA] = @V_ID_EMPRESA AND [CODIGO] = N'TRANSPORTISTA');
+
+IF @V_ID_USUARIO IS NOT NULL AND @V_ID_ROL IS NOT NULL
+   AND NOT EXISTS (SELECT 1 FROM [SEGURIDAD].[USUARIOS_ROLES]
+                   WHERE [ID_USUARIO] = @V_ID_USUARIO AND [ID_ROL] = @V_ID_ROL AND [CODIGO_ESTADO] = N'ACTIVO')
+BEGIN
+    INSERT INTO [SEGURIDAD].[USUARIOS_ROLES]
+        ([ID_USUARIO], [ID_ROL], [CODIGO_ESTADO], [ID_USUARIO_ALTA])
+    VALUES (@V_ID_USUARIO, @V_ID_ROL, N'ACTIVO', @V_ID_USUARIO);
+END;
+
+IF @V_ID_USUARIO IS NOT NULL
+   AND NOT EXISTS (SELECT 1 FROM [LOGISTICA].[TRANSPORTISTAS]
+                   WHERE [ID_EMPRESA] = @V_ID_EMPRESA AND [ID_USUARIO] = @V_ID_USUARIO)
+BEGIN
+    INSERT INTO [LOGISTICA].[TRANSPORTISTAS]
+        ([ID_EMPRESA], [ID_USUARIO], [CODIGO], [TIPO_VINCULO], [TELEFONO], [LICENCIA],
+         [CATEGORIA_LICENCIA], [CODIGO_ESTADO], [ID_USUARIO_ALTA])
+    VALUES
+        (@V_ID_EMPRESA, @V_ID_USUARIO, N'TRA-000001', N'EMPRESA', N'11-5555-0101',
+         N'LIC-DEMO-001', N'CARGAS', N'ACTIVO', @V_ID_USUARIO);
+END;
+
+DECLARE @V_ID_TRANSPORTISTA BIGINT = (SELECT [ID_TRANSPORTISTA] FROM [LOGISTICA].[TRANSPORTISTAS]
+                                      WHERE [ID_EMPRESA] = @V_ID_EMPRESA AND [ID_USUARIO] = @V_ID_USUARIO);
+
+IF @V_ID_TRANSPORTISTA IS NOT NULL
+   AND NOT EXISTS (SELECT 1 FROM [LOGISTICA].[VEHICULOS]
+                   WHERE [ID_EMPRESA] = @V_ID_EMPRESA AND [PATENTE] = N'AB123CD')
+BEGIN
+    INSERT INTO [LOGISTICA].[VEHICULOS]
+        ([ID_EMPRESA], [CODIGO], [PATENTE], [TIPO_VEHICULO], [TIPO_PROPIEDAD], [MARCA],
+         [MODELO], [ANIO], [CAPACIDAD_CARGA_KG], [CODIGO_ESTADO], [ID_USUARIO_ALTA])
+    VALUES
+        (@V_ID_EMPRESA, N'VEH-000001', N'AB123CD', N'CAMIONETA', N'EMPRESA', N'Ford',
+         N'Transit', 2024, 1500, N'ACTIVO', @V_ID_USUARIO);
+END;
+
+DECLARE @V_ID_VEHICULO BIGINT =
+(
+    SELECT [ID_VEHICULO]
+    FROM [LOGISTICA].[VEHICULOS]
+    WHERE [ID_EMPRESA] = @V_ID_EMPRESA
+      AND [PATENTE] = N'AB123CD'
+);
+
+-- INICIO: Completa la asignación de las hojas antiguas creadas antes de los maestros de transporte.
+UPDATE [RUTA]
+SET [ID_TRANSPORTISTA] = @V_ID_TRANSPORTISTA,
+    [ID_VEHICULO] = @V_ID_VEHICULO,
+    [CHOFER] = CONCAT_WS(N' ', [USR].[NOMBRES], [USR].[APELLIDO]),
+    [PATENTE] = N'AB123CD'
+FROM [LOGISTICA].[HOJAS_RUTA] AS [RUTA]
+INNER JOIN [SEGURIDAD].[USUARIOS] AS [USR]
+    ON [USR].[ID_USUARIO] = @V_ID_USUARIO
+WHERE [RUTA].[ID_EMPRESA] = @V_ID_EMPRESA
+  AND ([RUTA].[ID_TRANSPORTISTA] IS NULL OR [RUTA].[ID_VEHICULO] IS NULL)
+  AND [RUTA].[TIPO_ASIGNACION] = N'DIRECTA'
+  AND [RUTA].[CODIGO_ESTADO] <> N'OFRECIDA'
+  AND @V_ID_TRANSPORTISTA IS NOT NULL
+  AND @V_ID_VEHICULO IS NOT NULL;
+-- FIN: Completa la asignación de las hojas antiguas creadas antes de los maestros de transporte.
+
+DECLARE @V_ID_SOLICITUD_URGENTE BIGINT =
+(
+    SELECT TOP (1) [ID_SOLICITUD]
+    FROM [LOGISTICA].[SOLICITUDES]
+    WHERE [ID_EMPRESA] = @V_ID_EMPRESA
+      AND [TIPO_SERVICIO] = N'URGENCIA'
+      AND [CODIGO_ESTADO] = N'PENDIENTE'
+    ORDER BY [ID_SOLICITUD]
+);
+DECLARE @V_ID_HOJA_COMPLETA BIGINT;
+DECLARE @V_ID_PARADA BIGINT;
+DECLARE @V_ROW_VERSION VARBINARY(8);
+DECLARE @V_CODIGO_ERROR BIGINT;
+DECLARE @V_MENSAJE NVARCHAR(4000);
+DECLARE @V_FILAS_AFECTADAS INT;
+DECLARE @V_SOLICITUD_JSON NVARCHAR(MAX);
+
+IF @V_ID_SOLICITUD_URGENTE IS NOT NULL
+   AND @V_ID_TRANSPORTISTA IS NOT NULL
+   AND @V_ID_VEHICULO IS NOT NULL
+   AND NOT EXISTS
+   (
+       SELECT 1
+       FROM [LOGISTICA].[HOJAS_RUTA]
+       WHERE [ID_EMPRESA] = @V_ID_EMPRESA
+         AND [OBSERVACION] = N'Recorrido urgente completado de demostración.'
+   )
+BEGIN
+    -- INICIO: Recorrido cerrado que permite comprender salida, llegada, cierre y resultado.
+    SET @V_SOLICITUD_JSON = CONCAT(N'[{"Order":1,"RequestId":', @V_ID_SOLICITUD_URGENTE, N'}]');
+
+    EXEC [LOGISTICA].[SP_LOGISTICA_COMMAND]
+        @I_ACCION = N'RUTA_CREAR',
+        @I_ID_EMPRESA = @V_ID_EMPRESA,
+        @S_ID_SESION = 1,
+        @S_ID_USUARIO = @V_ID_USUARIO,
+        @I_ID_TRANSPORTISTA = @V_ID_TRANSPORTISTA,
+        @I_ID_VEHICULO = @V_ID_VEHICULO,
+        @I_FECHA = '2026-08-27',
+        @I_TIPO = N'URGENTE',
+        @I_TIPO_ASIGNACION = N'DIRECTA',
+        @I_OBSERVACION = N'Recorrido urgente completado de demostración.',
+        @I_JSON = @V_SOLICITUD_JSON,
+        @O_ID = @V_ID_HOJA_COMPLETA OUTPUT,
+        @O_FILAS_AFECTADAS = @V_FILAS_AFECTADAS OUTPUT,
+        @O_CODIGO_ERROR = @V_CODIGO_ERROR OUTPUT,
+        @O_MENSAJE = @V_MENSAJE OUTPUT;
+
+    SELECT @V_ROW_VERSION = [ROW_VERSION]
+    FROM [LOGISTICA].[HOJAS_RUTA]
+    WHERE [ID_HOJA_RUTA] = @V_ID_HOJA_COMPLETA;
+
+    EXEC [LOGISTICA].[SP_LOGISTICA_COMMAND]
+        @I_ACCION = N'RUTA_DESPACHAR',
+        @I_ID_EMPRESA = @V_ID_EMPRESA,
+        @S_ID_SESION = 1,
+        @S_ID_USUARIO = @V_ID_USUARIO,
+        @I_ID = @V_ID_HOJA_COMPLETA,
+        @I_OBSERVACION = N'Vehículo despachado para la prueba completa.',
+        @I_ROW_VERSION = @V_ROW_VERSION,
+        @O_ID = @V_ID_HOJA_COMPLETA OUTPUT,
+        @O_FILAS_AFECTADAS = @V_FILAS_AFECTADAS OUTPUT,
+        @O_CODIGO_ERROR = @V_CODIGO_ERROR OUTPUT,
+        @O_MENSAJE = @V_MENSAJE OUTPUT;
+
+    SELECT
+        @V_ID_PARADA = [ID_PARADA],
+        @V_ROW_VERSION = [ROW_VERSION]
+    FROM [LOGISTICA].[HOJAS_RUTA_PARADAS]
+    WHERE [ID_HOJA_RUTA] = @V_ID_HOJA_COMPLETA;
+
+    EXEC [LOGISTICA].[SP_LOGISTICA_COMMAND]
+        @I_ACCION = N'PARADA_CONFIRMAR',
+        @I_ID_EMPRESA = @V_ID_EMPRESA,
+        @S_ID_SESION = 1,
+        @S_ID_USUARIO = @V_ID_USUARIO,
+        @I_ID = @V_ID_PARADA,
+        @I_RESULTADO = N'ENTREGADA',
+        @I_OBSERVACION = N'Entrega urgente completada y recibida por el contacto informado.',
+        @I_ROW_VERSION = @V_ROW_VERSION,
+        @O_ID = @V_ID_PARADA OUTPUT,
+        @O_FILAS_AFECTADAS = @V_FILAS_AFECTADAS OUTPUT,
+        @O_CODIGO_ERROR = @V_CODIGO_ERROR OUTPUT,
+        @O_MENSAJE = @V_MENSAJE OUTPUT;
+    -- FIN: Recorrido cerrado que permite comprender salida, llegada, cierre y resultado.
+END;
